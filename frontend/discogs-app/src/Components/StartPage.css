@@ -1,0 +1,164 @@
+.StartPage{
+    margin-top: 0;
+    background: #000;
+    min-height: 380px;
+    height: auto;
+    display: block;
+}
+
+.StartPage .MainImage {
+    display:flex;
+    align-items:flex-end;
+    height:400px;
+    width:100%;
+    background-size:cover;
+    background-position:center;
+    background-image:url(https://blog.discogs.com/wp-content/uploads/2020/07/1920x1080-9.jpg);
+}
+
+.StartPage .SideImage{
+    display:flex;
+    align-items:flex-end;
+    height:126px;
+    width:100%;
+    background-size:cover;
+    background-position:center;
+    margin-bottom: 10px;
+}
+
+.StartPage .Spotlight{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.StartPage .SpotlightAside{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.StartPage .Spotlight h1{
+    margin: 0;
+    padding: 25px;
+    background-color:rgba(0,0,0,0.5);
+    color: white;
+    max-width: none;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+.StartPage .SpotlightAside h2{
+    margin: 0;
+    background-color: rgba(0,0,0,0.5);
+    font-size: 16px;
+    padding: 0 25px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+
+.StartPage .Spotlight:hover h1{
+    text-decoration: underline;
+    text-decoration-color: #4DD2FF;
+}
+
+.StartPage .SpotlightAside:hover h2{
+    text-decoration: underline;
+    text-decoration-color: #4DD2FF;
+}
+
+.StartPage .MainRow{
+    max-width: 1288px;
+    min-width: 1008px;
+    padding: 48px 0 0 0;
+    display: flex;
+    margin: 0 auto;
+}
+
+.StartPage .MainRow .WideCol{
+    width: 66.666%;
+    padding-right: 10px;
+}
+.StartPage .MainRow .Col{
+    position: relative;
+    padding: 0 0 28px 0;
+    width: 33.333%;
+}
+
+.StartPage .BrandHype{
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 23px;
+    color: white;
+}
+
+.StartPage .BrandHype a{
+    display: block;
+    font-size: 15px;
+    color: #4DD2FF;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.StartPage .BrandDescription{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 25px;
+    position: relative;
+    height:126px;
+    width:100%;
+    background-size:cover;
+    background-position:center;
+    margin-bottom: 10px;
+}
+
+.StartPage .TrendingReleases{
+    max-width: 1288px;
+    min-width: 1008px;
+    margin: 0 auto;
+    padding: 2rem 2rem 8rem 2rem;
+}
+
+.StartPage .Card{
+    width: 200px;
+    /*height: 205px;*/
+    margin: 1rem auto;
+    color: #8e8e8e;
+}
+
+.StartPage .Card .Album{
+    color: #8e8e8e;
+    font-size: 1.4rem;
+    line-height: 20px;
+    font-weight: bold;
+    margin-top: 1.3rem;
+    margin-left: 1rem;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "Helvetica Neue",Helvetica,"Nimbus Sans",Arial,sans-serif;
+}
+
+.StartPage .Card .Artist{
+    color: #8e8e8e;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: inline;
+    line-height: 20px;
+    margin: 0 0 14px;
+    margin-left: 1rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "Helvetica Neue",Helvetica,"Nimbus Sans",Arial,sans-serif;
+}
+
+.StartPage .TrendingReleases h1{
+    color: white;
+    /*font-size: 21px;*/
+    line-height: 35px;
+    margin: 0 0 14px;
+}

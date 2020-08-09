@@ -1,0 +1,49 @@
+.ItemListElement .Title {
+    margin: 0;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ItemListElement .Specs {
+    margin: 0.25rem 0;
+}
+
+.ItemListElement .ConditionLabel {
+    color: gray;
+    margin: 0 0.7rem 0 0;
+}
+
+.ItemListElement .Image {
+    margin-bottom: 0;
+    margin-right: 1em;
+    float: left;
+}
+
+.ItemListElement .Label {
+    margin-top: 0.5rem;
+}
+
+.ItemListElement .ItemCell {
+    min-width: 13rem;
+    max-width: 50rem;
+}
+
+.ItemListElement .PurchaseCell {
+    width: 9.5rem;
+}
+
+.ItemListElement .Price{
+    margin: 0 0 0.5rem 0;
+}
+
+.ItemListElement .TotalPrice{
+    margin: 0.3rem 0 0 0;
+    font-style: italic;
+    color:gray;
+}
+
+.ItemListElement .Details{
+    margin: 1rem 0 0 0;
+}
