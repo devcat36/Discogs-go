@@ -1,0 +1,31 @@
+.ItemSidebar {
+    position: sticky;
+    top:0;
+    padding: 2.5rem 0.5rem 0 0.5rem;
+    min-width: 364px;
+}
+
+.ItemSidebar .Price {
+    color: #B03060;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.ItemSidebar .Shipping {
+    color: #A0A0A0;
+    font-size: 18px;
+}
+
+.ItemSidebar .CartButton{
+    margin-top: 1rem;
+    width: 15rem;
+}
+
+.ItemSidebar .ConditionLabel{
+    font-weight: bold;
+}
+
+.ItemSidebar .Seller{
+    font-weight: normal;
+    font-size: medium;
+}

@@ -5,6 +5,7 @@ import NavBar from "./Components/Menus/NavBar";
 import StartPage from "./Components/StartPage";
 import Footer from "./Components/Footer";
 import Marketplace from "./Components/Marketplace";
+import ItemDescription from "./Components/ItemDescription";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route exact path={'/'}><StartPage/></Route>
           <Route exact path={'/sell'}><Marketplace/></Route>
+          <Route path={'/sell/item/'}><ItemDescription/></Route>
         </Switch>
         <Footer/>
       </Router>

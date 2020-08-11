@@ -1,0 +1,29 @@
+.ItemDescription{
+    padding: 0 1rem 2rem 1rem;
+    margin: 0 auto;
+    max-width: 1288px;
+    min-width: 1008px;
+}
+
+.ItemDescription .Description{
+    padding-right: 1rem;
+}
+
+.ItemDescription .ItemSpecs{
+    padding: 2rem 0 1rem 0;
+}
+
+.ItemDescription .Specs{
+    margin: 0.5rem 0;
+    color: black;
+}
+
+.ItemDescription .SpecLabel{
+    float: left;
+    width: 7rem;
+}
+
+.ItemDescription .CreditRole{
+    color: gray;
+    /*margin: 0 0.7rem 0 0;*/
+}
