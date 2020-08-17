@@ -10,7 +10,8 @@ function NavBar(props) {
   const handleItemClick = useCallback((e, {name}) => {
     //setActiveItem(name);
     if (name === 'Home') setRedirect({state: true, to: '/'});
-    else if (name === 'Buy Music') setRedirect({state: true, to: '/sell'});
+    else if (name === 'Buy Music') setRedirect({state: true, to: '/sell/list'});
+    else if (name === 'cart') setRedirect({state: true, to: '/sell/cart'});
   });
   return (
     <>

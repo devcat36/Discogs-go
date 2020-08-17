@@ -3,6 +3,7 @@ import {Grid, Image} from "semantic-ui-react";
 import FilterSidebar from "./FilterSidebar";
 import * as Currency from "../currency.js";
 import ItemList from "./ItemList";
+import MarketplaceTab from "./MarketplaceTab";
 
 const dummy_filters = {
   'Currency': [{name: 'EUR', count: 10000}, {name: 'USD', count: 5000}, {name: 'GBP', count: 100}],
@@ -71,7 +72,8 @@ function MarketplaceAllItems() {
   }, [selected, filters, isCategorySelected]);
 
   return (
-    <div>
+    <>
+      <MarketplaceTab activeItem={'All Items'}/>
       <Grid columns={2}>
         <Grid.Row>
           <Grid.Column width={3}>
@@ -85,7 +87,7 @@ function MarketplaceAllItems() {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </div>
+    </>
   );
 }
 

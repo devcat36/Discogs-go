@@ -1,5 +1,6 @@
 import React from "react";
 import {Table, Image, Header, Label, Button} from "semantic-ui-react";
+import {Link, useHistory} from 'react-router-dom';
 import "./ItemListElement.css";
 import * as Currency from "../currency";
 
@@ -15,7 +16,7 @@ function ItemListElement(props) {
       <Table.Cell>
         <div className={'ItemCell'}>
           <Image className={'Image'} size={'small'} src={props.imgsrc}/>
-          <div className={'Title'}>{props.listedName}</div>
+          <div className={'Title'}><Link to={'/sell/item/'}>{props.listedName}</Link></div>
           <div className={'Specs'}>
             <span className={'ConditionLabel'}>Label:</span>
             {labelString}
