@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
-import {Menu, Image, Input, Button, Container} from 'semantic-ui-react'
+import {Menu, Image, Input, Button, Container, Icon} from 'semantic-ui-react'
 import {Link, Redirect} from 'react-router-dom';
 import logo from '../../images/discogs-white.png';
-import {FaShoppingCart} from 'react-icons/fa'
+
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState("");
@@ -18,8 +18,8 @@ function NavBar(props) {
       {redirect.state&&<Redirect push to={redirect.to}/>}
       <Menu inverted borderless style={{borderRadius: 0, marginBottom: 0}}>
         <Container style={{width: '1288px', padding: '0 10px 0 15px'}}>
-          <Menu.Item as="a" header name={'Home'} onClick={handleItemClick}>
-            <Image src={logo} style={{marginRight: '1.5em'}}/>
+          <Menu.Item header name={'Home'}>
+            <Image src={logo} style={{marginRight: '1.5em', cursor:'pointer'}} onClick={()=>handleItemClick(null,{name:'Home'})}/>
           </Menu.Item>
           <Menu.Item>
             <Input style={{width: 400}} className="icon" icon="search"
@@ -41,8 +41,11 @@ function NavBar(props) {
             onClick={handleItemClick}
           />
           <Menu.Menu position="right">
-            <Menu.Item name="cart" onClick={handleItemClick}>
-              <FaShoppingCart/>
+            <Menu.Item name="cart" style={{padding:0}}>
+              <div
+                style={{cursor:'pointer', height:'100%', width:'4rem', display:'flex', justifyContent:'center', alignItems:'center'}}
+                onClick={()=>handleItemClick(null,{name:'cart'})}
+              ><Icon name={'cart'}/></div>
             </Menu.Item>
             <Menu.Item
               name="Log In"

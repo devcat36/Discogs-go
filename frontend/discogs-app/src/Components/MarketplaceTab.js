@@ -5,9 +5,10 @@ import {useHistory} from 'react-router-dom';
 function MarketplaceTab(props){
     const history = useHistory();
     const handleItemClick = useCallback((e, {name}) => {
-    if(name==='All Items')history.push('/sell/list');
-    else if(name==='Cart')history.push('/sell/cart');
-  }, [history]);
+      if(name==='All Items')history.push('/sell/list');
+      else if(name==='Purchases')history.push('/sell/purchases');
+      else if(name==='Cart')history.push('/sell/cart');
+    }, [history]);
   return(
     <Menu tabular>
         <Menu.Item><Header as="h2">Marketplace</Header></Menu.Item>

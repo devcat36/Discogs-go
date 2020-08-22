@@ -5,6 +5,7 @@ import "./ItemListElement.css";
 import * as Currency from "../currency";
 
 function ItemListElement(props) {
+  const history=useHistory();
   let labelString = '';
   for (let i = 0; i < props.label.length; i++) {
     labelString = labelString.concat(props.label[i]);
@@ -45,8 +46,8 @@ function ItemListElement(props) {
         {/*<span className={'TotalPrice'}>about {currencySymbol}{(props.price+props.shipping).toFixed(2)} total</span>*/}
       </Table.Cell>
       <Table.Cell className={'PurchaseCell'} textAlign={'center'}>
-        <Button size={'small'} color={"green"}>Add to Cart</Button>
-        <Header as={'h5'} className={'Details'}>Details</Header>
+        <Button size={'small'} color={"green"} onClick={()=>{history.push('/sell/cart')}}>Add to Cart</Button>
+        <Header as={'h5'} className={'Details'}><Link to={'/sell/item'}>Details</Link></Header>
       </Table.Cell>
     </Table.Row>
   )

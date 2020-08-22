@@ -1,16 +1,17 @@
 import React from "react";
 import {Header, Divider, Button, Sticky} from "semantic-ui-react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import "./ItemSidebar.css"
 
 function ItemSidebar(props) {
+  const history = useHistory();
   return (
       <div className={'ItemSidebar'}>
         <div>
           <span className={'Price'}>€13.00</span>
           <span className={'Shipping'}> + shipping</span>
         </div>
-        <Button className={'CartButton'} color={"green"}>Add to Cart</Button>
+        <Button className={'CartButton'} color={"green"} onClick={()=>{history.push('/sell/cart')}}>Add to Cart</Button>
         <Header as={'h3'}>Condition</Header>
         <Divider/>
         <div><span className={'ConditionLabel'}>Media: </span>Mint (M)</div>

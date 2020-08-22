@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Table, Label, Menu, Icon, Segment, Header, Dropdown} from "semantic-ui-react";
 import ItemListElement from "./ItemListElement";
+import PaginationTop from "./PaginationTop";
 
 const amountOptions = [
   {key: '25', text: '25', value: '25'},
@@ -23,45 +24,12 @@ const sortOptions = [
 ];
 
 function ItemList(props) {
-  const [listingRange, setListingRange] = useState({low: 1, high: 555173411});
-  const [listingAmount, setListingAmount] = useState(amountOptions[0]);
-  const [sortOrder, setSortOrder] = useState(sortOptions[0]);
   return (
     <>
-      <Menu borderless>
-        <Menu.Item>
-          <Header as={'h5'}>Showing&nbsp;&nbsp;{listingRange.low.toLocaleString()}&nbsp;&nbsp;–&nbsp;&nbsp;
-            {listingAmount.text}&nbsp;&nbsp;of&nbsp;&nbsp;{listingRange.high.toLocaleString()}</Header>
-        </Menu.Item>
-        <Menu.Menu position={'right'}>
-          <Menu.Item style={{padding: '0.5rem 1rem 0.5rem 1rem'}}>
-            Sort
-            <Dropdown
-              compact
-              selection
-              options={sortOptions}
-              selectedLabel={sortOrder}
-              value={sortOrder.value}
-              style={{margin: '0 2rem 0 1rem'}}
-              onChange={(e, data) => {
-                setSortOrder(sortOptions.find(item => item.key === data.value));
-              }}
-            />
-            Show
-            <Dropdown
-              compact
-              selection
-              options={amountOptions}
-              selectedLabel={listingAmount}
-              value={listingAmount.value}
-              style={{margin: '0 0 0 1rem'}}
-              onChange={(e, data) => {
-                setListingAmount(amountOptions.find(item => item.key === data.value));
-              }}
-            />
-          </Menu.Item>
-        </Menu.Menu>
-      </Menu>
+      <PaginationTop
+        amountOptions={amountOptions}
+        sortOptions={sortOptions}
+      />
       <Table unstackable>
         <Table.Header>
           <Table.Row>

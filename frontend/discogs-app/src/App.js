@@ -13,9 +13,8 @@ function App() {
         <NavBar/>
         <Switch>
           <Route exact path={'/'}><StartPage/></Route>
-          <Route path={'/sell/list'}><Marketplace/></Route>
-          <Route path={'/sell/cart'}><Marketplace/></Route>
-          <Route path={'/sell/item'}><ItemDescription/></Route>
+          <Route path={'/sell'}><Marketplace/></Route>
+          <Route path={'/sell'}><Marketplace/></Route>
         </Switch>
         <Footer/>
       </Router>
