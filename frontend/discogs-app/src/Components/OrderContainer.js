@@ -36,6 +36,7 @@ const shippingOptions = [
 ];
 
 function OrderContainer(props) {
+  const history=useHistory();
   return (
     <div className={'OrderContainer'}>
       <Header attached={'top'} block>
@@ -120,7 +121,7 @@ function OrderContainer(props) {
               <label style={{textAlign: 'right'}}>I agree to&nbsp;
                 <Link>Sales & Transaction Policy</Link> and <Link>Seller Terms</Link>
               </label>}/>
-            <Button color={'green'} fluid style={{marginTop: '1rem'}}>Place order and pay now</Button>
+            <Button color={'green'} fluid style={{marginTop: '1rem'}} onClick={()=>{history.push('/sell/order')}}>Place order and pay now</Button>
           </div>
         </div>
       </Segment>

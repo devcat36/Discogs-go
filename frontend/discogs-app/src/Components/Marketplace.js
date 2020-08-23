@@ -5,12 +5,14 @@ import MarketplaceAllItems from "./MarketplaceAllItems";
 import Cart from "./Cart";
 import Purchases from "./Purchases";
 import ItemDescription from "./ItemDescription";
+import Order from "./Order";
 
 function Marketplace() {
   return (
     <div className={"Marketplace"}>
       <Switch>
         <Route path={'/sell/item'}>{<ItemDescription/>}</Route>
+        <Route path={'/sell/order'}>{<Order/>}</Route>
         <Route exact path={'/sell/list'}>{<MarketplaceAllItems/>}</Route>
         <Route exact path={'/sell/cart'}>{<Cart/>}</Route>
         <Route exact path={'/sell/purchases'}>{<Purchases/>}</Route>

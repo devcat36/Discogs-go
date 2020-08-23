@@ -49,7 +49,6 @@ function Purchases() {
             <Table.HeaderCell>Total</Table.HeaderCell>
             <Table.HeaderCell>Date</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
-            <Table.HeaderCell> </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <OrderListElement order={dummyOrder}/>

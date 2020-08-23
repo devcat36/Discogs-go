@@ -6,7 +6,7 @@ function OrderListElement({order}){
   return(
     <Table.Row>
       <Table.Cell textAlign={'center'}>
-        <Link>{order.number}</Link>
+        <Link to={'/sell/order'}>{order.number}</Link>
       </Table.Cell>
       <Table.Cell>
         {order.summary.map(item=>
