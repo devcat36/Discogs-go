@@ -32,7 +32,7 @@ const dummyOrder={
 
 function Purchases() {
   return (
-    <>
+    <div className={'contained'}>
       <MarketplaceTab activeItem={'Purchases'}/>
       <Link>1 Purchase Awaiting Feedback</Link>
       <PaginationTop
@@ -53,7 +53,7 @@ function Purchases() {
         </Table.Header>
         <OrderListElement order={dummyOrder}/>
       </Table>
-    </>
+    </div>
   );
 }
 

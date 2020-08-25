@@ -1,21 +1,21 @@
 import React, {useCallback, useState} from 'react';
 import {Menu, Image, Input, Button, Container, Icon} from 'semantic-ui-react'
-import {Link, Redirect} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import logo from '../../images/discogs-white.png';
 
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState("");
-  const [redirect, setRedirect] = useState({state: false, to: ''});
+  const history=useHistory();
   const handleItemClick = useCallback((e, {name}) => {
     //setActiveItem(name);
-    if (name === 'Home') setRedirect({state: true, to: '/'});
-    else if (name === 'Buy Music') setRedirect({state: true, to: '/sell/list'});
-    else if (name === 'cart') setRedirect({state: true, to: '/sell/cart'});
+    if (name === 'Home') history.push('/');
+    else if (name === 'Buy Music') history.push('/sell/list');
+    else if (name === 'cart') history.push('/sell/cart');
+    else if (name === 'Sell Music') history.push('/sell')
   });
   return (
     <>
-      {redirect.state&&<Redirect push to={redirect.to}/>}
       <Menu inverted borderless style={{borderRadius: 0, marginBottom: 0}}>
         <Container style={{width: '1288px', padding: '0 10px 0 15px'}}>
           <Menu.Item header name={'Home'}>

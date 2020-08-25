@@ -21,6 +21,7 @@ import {
 import {Link} from "react-router-dom";
 import OrderItemListElement from "./OrderItemListElement";
 import OrderFeedItem from "./OrderFeedItem";
+import './common.css';
 
 const dummyItem = {
   id: 916905096,
@@ -43,7 +44,7 @@ const addressInfo = {
 
 function Order() {
   return (
-    <>
+    <div className={'contained'}>
       <Grid>
         <Grid.Column width={12}>
           <Breadcrumb style={{marginTop: '1rem'}}>
@@ -209,7 +210,7 @@ function Order() {
           </Card>
         </Grid.Column>
       </Grid>
-    </>
+    </div>
   )
 }
 

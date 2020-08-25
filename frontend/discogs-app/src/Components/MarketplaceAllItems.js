@@ -72,7 +72,7 @@ function MarketplaceAllItems() {
   }, [selected, filters, isCategorySelected]);
 
   return (
-    <>
+    <div className={'contained'}>
       <MarketplaceTab activeItem={'All Items'}/>
       <Grid columns={2}>
         <Grid.Row>
@@ -87,7 +87,7 @@ function MarketplaceAllItems() {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </>
+    </div>
   );
 }
 

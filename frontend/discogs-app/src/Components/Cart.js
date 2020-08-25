@@ -32,7 +32,7 @@ const dummyCI_2 = [(
 
 function Cart() {
   return (
-    <>
+    <div className={'contained'}>
       <MarketplaceTab activeItem={'Cart'}/>
       <div className={'Cart'}>
         <div className={'Orders'}>
@@ -60,7 +60,7 @@ function Cart() {
           </Segment>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
