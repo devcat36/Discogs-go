@@ -17,12 +17,12 @@ function NavBar(props) {
   return (
     <>
       <Menu inverted borderless style={{borderRadius: 0, marginBottom: 0}}>
-        <Container style={{width: '1288px', padding: '0 10px 0 15px'}}>
+        <Container style={{width: '1288px', padding: '0'}}>
           <Menu.Item header name={'Home'}>
             <Image src={logo} style={{marginRight: '1.5em', cursor:'pointer'}} onClick={()=>handleItemClick(null,{name:'Home'})}/>
           </Menu.Item>
-          <Menu.Item>
-            <Input style={{width: 400}} className="icon" icon="search"
+          <Menu.Item style={{width: 'calc(100% - 900px)', minWidth:'300px'}}>
+            <Input style={{width: '100%'}} className="icon" icon="search"
                    placeholder="Search artists, albums and more..."/>
           </Menu.Item>
           <Menu.Item

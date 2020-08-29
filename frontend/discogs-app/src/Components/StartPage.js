@@ -1,10 +1,10 @@
 import React from 'react';
-import {Container, Grid, Placeholder, Image} from 'semantic-ui-react'
-import './StartPage.css'
+import {Container, Grid, Placeholder, Image} from 'semantic-ui-react';
 
 function StartPage(){
     return(
     <div className="StartPage">
+       <div className='contained'>
         <div className="MainRow">
             <div className="WideCol">
                 <a className="Spotlight">
@@ -100,6 +100,7 @@ function StartPage(){
                     </div>
                 </Grid.Column>
             </Grid>
+        </div>
         </div>
     </div>
     );

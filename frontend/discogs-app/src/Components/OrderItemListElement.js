@@ -9,7 +9,7 @@ function OrderItemListElement({item}) {
         {item.id}
       </Table.Cell>
       <Table.Cell>
-        <Item.Group><Item>
+        <Item.Group unstackable><Item>
           <Item.Image size='tiny' src={item.imgsrc}/>
           <Item.Content>
             <Header as='h5'><Link to={'/sell/item'}>{item.title}</Link></Header>

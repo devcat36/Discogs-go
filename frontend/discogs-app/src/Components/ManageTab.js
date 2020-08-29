@@ -18,11 +18,6 @@ function ManageTab(props){
           onClick={handleItemClick}
         />
         <Menu.Item
-          name="Billing"
-          active={props.activeItem === 'Billing'}
-          onClick={handleItemClick}
-        />
-        <Menu.Item
           name="List Item For Sale"
           active={props.activeItem === 'List Item For Sale'}
           onClick={handleItemClick}

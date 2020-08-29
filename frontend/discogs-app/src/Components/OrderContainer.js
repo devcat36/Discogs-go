@@ -15,9 +15,6 @@ import {
 } from "semantic-ui-react";
 import {Link, useHistory} from 'react-router-dom';
 
-import "./Cart.css";
-import CartItem from "./CartItem";
-
 const addressInfo = {
   name: 'Ryu JaeHoon',
   address: '5510 NE Courier Court STE 100',
@@ -41,14 +38,14 @@ function OrderContainer(props) {
     <div className={'OrderContainer'}>
       <Header attached={'top'} block>
         <span className={'ContainerHeader'}>
-          Order From <Link>{props.seller}</Link>
+          Order From <Link to={'/store/'+props.seller}>{props.seller}</Link>
         </span>
         <Icon name={'trash alternate outline'} color={'grey'} style={{float: 'right'}}/>
       </Header>
       <Segment attached>
         <div className={'OrderContents'}>
           <div className={'OrderLeft'}>
-            <Table basic={'very'}><Table.Body>
+            <Table basic={'very'} unstackable><Table.Body>
               {props.cartItems.map(item=>item)}
             </Table.Body></Table>
             <Header as={'h3'} style={{marginTop: '0'}}>

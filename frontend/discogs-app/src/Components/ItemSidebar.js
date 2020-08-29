@@ -1,7 +1,6 @@
 import React from "react";
 import {Header, Divider, Button, Sticky} from "semantic-ui-react";
 import {Link, useHistory} from "react-router-dom";
-import "./ItemSidebar.css"
 
 function ItemSidebar(props) {
   const history = useHistory();

@@ -1,10 +1,10 @@
 import React from "react";
-import {Item} from "semantic-ui-react";
+import {Item, Image} from "semantic-ui-react";
 
-function ListForSearchItem({item, onClick}) {
+function ListForSaleSearchItem({item, onClick}) {
   return (
     <Item onClick={onClick} style={{cursor:'pointer'}}>
-      <Item.Image size="tiny" src={item.imgsrc} style={{width:'55px', height:'55px'}}/>
+      <img src={item.imgsrc} style={{width:'55px', height:'55px', marginRight:'14px'}}/>
       <Item.Content>
         {item.artist} - {item.title}
         <Item.Meta>
@@ -17,4 +17,4 @@ function ListForSearchItem({item, onClick}) {
   )
 }
 
-export default ListForSearchItem
+export default ListForSaleSearchItem

@@ -1,17 +1,16 @@
 import React from "react";
 import {Item, Image, Table, Icon, Header} from "semantic-ui-react";
 import {Link, useHistory} from 'react-router-dom';
-import "./Cart.css";
 
 function CartItem(props) {
   return (
     <Table.Row>
       <Table.Cell>
-        <Item.Group><Item>
+        <Item.Group unstackable><Item>
           <Item.Image size="tiny" src={props.imgsrc}/>
           <Item.Content>
             <Item.Header as={'a'} className={'ItemHeader'}>
-              <Link>{props.title}</Link>
+              <Link to={'/sell/item'}>{props.title}</Link>
             </Item.Header>
             <Item.Meta>Media: {props.mediaCondition}</Item.Meta>
             <Item.Meta>Sleeve: {props.sleeveCondition}</Item.Meta>

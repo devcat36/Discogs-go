@@ -34,7 +34,7 @@ function Purchases() {
   return (
     <div className={'contained'}>
       <MarketplaceTab activeItem={'Purchases'}/>
-      <Link>1 Purchase Awaiting Feedback</Link>
+      <Link to={'/sell/order'}>1 Purchase Awaiting Feedback</Link>
       <PaginationTop
         amountOptions={amountOptions}
         sortOptions={sortOptions}

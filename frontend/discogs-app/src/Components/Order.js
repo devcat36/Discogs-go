@@ -21,7 +21,6 @@ import {
 import {Link} from "react-router-dom";
 import OrderItemListElement from "./OrderItemListElement";
 import OrderFeedItem from "./OrderFeedItem";
-import './common.css';
 
 const dummyItem = {
   id: 916905096,
@@ -89,7 +88,7 @@ function Order() {
           </div>
           <Header as="h2" style={{margin: 'auto 0 auto'}}>Timeline</Header>
           <Divider/>
-          <Step.Group size={'mini'} style={{margin: 'auto 0 auto'}} fluid>
+          <Step.Group unstackable size={'mini'} style={{margin: 'auto 0 auto'}} fluid>
             <Step disabled>
               <Icon name="star"/>
               <Step.Content>
@@ -141,13 +140,15 @@ function Order() {
               icon: 'angle up',
               date: '22-Aug-20 02:28 AM',
               datePassed: '5 minutes ago',
-              content: <><Link>Franzson</Link> changed the order status to <b>Invoice Sent</b></>
+              user: 'Franzson',
+              content: <>changed the order status to <b>Invoice Sent</b></>
             }}/>
             <OrderFeedItem feed={{
               icon: 'star',
               date: '22-Aug-20 02:28 AM',
               datePassed: '5 minutes ago',
-              content: <><Link>yunobo</Link> created this order</>
+              user: 'yunobo',
+              content: <>created this order</>
             }}/>
           </Feed>
         </Grid.Column>
@@ -159,12 +160,12 @@ function Order() {
               </Card.Header>
             </Card.Content>
             <Card.Content>
-              <Item.Group>
+              <Item.Group unstackable>
                 <Item>
                   <Item.Image style={{width: '50px', height: '50px'}}
                               src={'https://react.semantic-ui.com/images/avatar/small/jenny.jpg'}/>
                   <Item.Content>
-                    <Item.Header style={{paddingTop: '7px'}}><Link>Franzson</Link></Item.Header>
+                    <Item.Header style={{paddingTop: '7px'}}><Link to={'/store'}>Franzson</Link></Item.Header>
                     <Item.Meta><Link>Send Seller Feedback</Link></Item.Meta>
                   </Item.Content>
                 </Item>
@@ -189,7 +190,7 @@ function Order() {
               </Card.Header>
             </Card.Content>
             <Card.Content>
-              <Item.Group><Item>
+              <Item.Group unstackable><Item>
                 <Item.Image style={{width: '50px', height: '50px'}}
                             src={'https://react.semantic-ui.com/images/avatar/small/elliot.jpg'}/>
                 <Item.Content>

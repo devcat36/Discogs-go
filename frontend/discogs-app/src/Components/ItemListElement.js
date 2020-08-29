@@ -1,7 +1,6 @@
 import React from "react";
 import {Table, Image, Header, Label, Button} from "semantic-ui-react";
 import {Link, useHistory} from 'react-router-dom';
-import "./ItemListElement.css";
 import * as Currency from "../currency";
 
 function ItemListElement(props) {
@@ -34,7 +33,7 @@ function ItemListElement(props) {
         </div>
       </Table.Cell>
       <Table.Cell>
-        <div className={'Seller'}>{props.seller}</div>
+        <div className={'Seller'}><Link to={'/store/'+props.seller}>{props.seller}</Link></div>
         <div className={'Country'}>
           <span className={'ConditionLabel'}>Ships From:</span>
           {props.country}

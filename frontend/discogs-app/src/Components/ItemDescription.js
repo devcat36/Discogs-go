@@ -1,17 +1,15 @@
 import React, {useRef} from "react";
 import {Grid, Item, Image, Header, Divider, Table, List, Ref} from 'semantic-ui-react';
-import './ItemDescription.css';
-import './common.css';
 import ItemSidebar from "./ItemSidebar";
 
 function ItemDescription() {
   const contextRef=useRef(null);
   return (
     <div className={'ItemDescription contained'}>
-      <Grid divided stackable>
+      <Grid divided>
         <Grid.Column width={11}>
           <div className={'Description'} ref={contextRef}>
-            <Item.Group className={'ItemSpecs'}>
+            <Item.Group unstackable className={'ItemSpecs'}>
               <Item>
                 <Item.Image size={'small'}
                             src={'https://img.discogs.com/U2zKtmCbe57_Us8Z7DXxwL2mDfo=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-9102332-1474809687-6678.jpeg.jpg'}/>

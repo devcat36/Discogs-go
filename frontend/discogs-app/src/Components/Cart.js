@@ -2,7 +2,6 @@ import React from "react";
 import {Segment, Header, Table, Button, Icon} from "semantic-ui-react";
 import {Link, useHistory} from 'react-router-dom';
 import OrderContainer from "./OrderContainer";
-import "./Cart.css";
 import MarketplaceTab from "./MarketplaceTab";
 import CartItem from "./CartItem";
 

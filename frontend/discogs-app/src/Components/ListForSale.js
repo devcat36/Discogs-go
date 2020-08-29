@@ -14,11 +14,9 @@ import {
   Divider, TextArea
 } from "semantic-ui-react";
 import {Link} from "react-router-dom";
-import ReactDOM from 'react-dom';
 import ManageTab from "./ManageTab";
-import "./common.css";
 import SpecificSearchInputField from "./SpecificSearchInputField";
-import ListForSearchItem from "./ListForSearchItem";
+import ListForSaleSearchItem from "./ListForSaleSearchItem";
 
 const dummySearchItems = [
   {
@@ -315,8 +313,8 @@ function ListForSale() {
           <Transition visible={searchResultVisible}>
             <div style={{overflow: 'auto', height: `${Math.max(windowHeight-190,600)}px`, paddingTop: '5px'}}>
               <Header as={'h4'} block>Showing 50 of 749</Header>
-              <Item.Group style={{padding: '0 5px 0 5px'}}>
-                {dummySearchItems.map(item => <ListForSearchItem item={item} onClick={handleItemClick}/>)}
+              <Item.Group unstackable style={{padding: '0 5px 0 5px'}}>
+                {dummySearchItems.map(item => <ListForSaleSearchItem item={item} onClick={handleItemClick}/>)}
               </Item.Group>
             </div>
           </Transition>
@@ -324,7 +322,7 @@ function ListForSale() {
         <Grid.Column>
           <Transition visible={listItemVisible}>
             <div style={{overflow: 'auto', height: `${Math.max(windowHeight-190,600)}px`}}>
-              <Item.Group><Item>
+              <Item.Group unstackable><Item>
                 <Item.Image src={dummyItemSelected.imgsrc} size={'tiny'}/>
                 <Item.Content>
                   <Header as={'h4'}>
