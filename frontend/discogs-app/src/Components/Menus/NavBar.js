@@ -10,6 +10,7 @@ function NavBar(props) {
   const handleItemClick = useCallback((e, {name}) => {
     //setActiveItem(name);
     if (name === 'Home') history.push('/');
+    else if(name === 'Explore') history.push('/explore/master');
     else if (name === 'Buy Music') history.push('/sell/list');
     else if (name === 'cart') history.push('/sell/cart');
     else if (name === 'Sell Music') history.push('/sell')

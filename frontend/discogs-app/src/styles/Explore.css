@@ -1,0 +1,17 @@
+.Explore .ItemContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Explore .ExploreItem{
+    margin: 11px;
+}
+
+.Explore .ExploreItem img{
+    width: 150px;
+    height: 150px;
+}
+
+.Explore .ExploreItem div{
+    margin: 0.1rem 0;
+}

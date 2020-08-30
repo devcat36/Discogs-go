@@ -8,6 +8,7 @@ import './styles/ItemListElement.css'
 import './styles/ItemSidebar.css'
 import './styles/SellerStore.css'
 import './styles/StartPage.css'
+import './styles/Explore.css'
 import NavBar from "./Components/Menus/NavBar";
 import StartPage from "./Components/StartPage";
 import Footer from "./Components/Footer";
@@ -19,6 +20,8 @@ import Purchases from "./Components/Purchases";
 import ListForSale from "./Components/ListForSale";
 import SellerStore from "./Components/SellerStore";
 import OrderSeller from "./Components/OrderSeller";
+import ExploreMasters from "./Components/ExploreMasters";
+import ExploreArtists from "./Components/ExploreArtists";
 
 function App() {
   return (
@@ -35,6 +38,8 @@ function App() {
         <Route exact path={'/sell/orders'}><OrderSeller/></Route>
         <Route exact path={'/sell'}><ListForSale/></Route>
         <Route path={'/store'}><SellerStore/></Route>
+        <Route path={'/explore/master'}><ExploreMasters/></Route>
+        <Route path={'/explore/artist'}><ExploreArtists/></Route>
       </Switch>
       <Footer/>
     </Router>
