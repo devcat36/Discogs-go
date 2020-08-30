@@ -18,6 +18,7 @@ import Cart from "./Components/Cart";
 import Purchases from "./Components/Purchases";
 import ListForSale from "./Components/ListForSale";
 import SellerStore from "./Components/SellerStore";
+import OrderSeller from "./Components/OrderSeller";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route exact path={'/sell/list'}><MarketplaceAllItems/></Route>
         <Route exact path={'/sell/cart'}><Cart/></Route>
         <Route exact path={'/sell/purchases'}><Purchases/></Route>
+        <Route exact path={'/sell/orders'}><OrderSeller/></Route>
         <Route exact path={'/sell'}><ListForSale/></Route>
         <Route path={'/store'}><SellerStore/></Route>
       </Switch>
