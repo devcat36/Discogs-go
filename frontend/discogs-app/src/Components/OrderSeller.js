@@ -2,7 +2,7 @@ import React from "react";
 import ManageTab from "./ManageTab";
 import PaginationTop from "./PaginationTop";
 import {Divider, Table} from "semantic-ui-react";
-import OrderSellerListElement from "./OrderSeller List Element";
+import OrderSellerListElement from "./OrderSellerListElement";
 
 const amountOptions = [
   {key: '25', text: '25', value: '25'},
