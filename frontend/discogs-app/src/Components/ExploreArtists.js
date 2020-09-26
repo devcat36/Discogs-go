@@ -85,7 +85,7 @@ function ExploreArtists() {
           <PaginationTop sortOptions={sortOptions} amountOptions={amountOptions}/>
           <Divider/>
           <div className="ItemContainer">
-            {dummyItems.map(item=><ExploreItem item={item}/>)}
+            {dummyItems.map(item=><ExploreItem item={item} type='artist'/>)}
           </div>
           <Divider/>
           <Menu floated="right" pagination>
