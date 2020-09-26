@@ -78,9 +78,6 @@ function ExploreArtists() {
     <div className="contained Explore">
       <Grid>
         <Grid.Column width={3}>
-          <FilterSidebar
-            type="explore"
-          />
           <div style={{marginLeft: '5px'}}><Link><Icon name="question circle"/> Help on Searching</Link></div>
         </Grid.Column>
         <Grid.Column width={13}>

@@ -22,6 +22,7 @@ import SellerStore from "./Components/SellerStore";
 import OrderSeller from "./Components/OrderSeller";
 import ExploreMasters from "./Components/ExploreMasters";
 import ExploreArtists from "./Components/ExploreArtists";
+import MasterDescription from "./Components/MasterDescription";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path={'/store'}><SellerStore/></Route>
         <Route path={'/explore/master'}><ExploreMasters/></Route>
         <Route path={'/explore/artist'}><ExploreArtists/></Route>
+        <Route path={'/master'}><MasterDescription/></Route>
       </Switch>
       <Footer/>
     </Router>

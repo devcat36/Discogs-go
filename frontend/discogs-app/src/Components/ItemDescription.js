@@ -3,12 +3,11 @@ import {Grid, Item, Image, Header, Divider, Table, List, Ref} from 'semantic-ui-
 import ItemSidebar from "./ItemSidebar";
 
 function ItemDescription() {
-  const contextRef=useRef(null);
   return (
     <div className={'ItemDescription contained'}>
       <Grid divided>
         <Grid.Column width={11}>
-          <div className={'Description'} ref={contextRef}>
+          <div className={'Description'}>
             <Item.Group unstackable className={'ItemSpecs'}>
               <Item>
                 <Item.Image size={'small'}
@@ -104,7 +103,7 @@ function ItemDescription() {
           </div>
         </Grid.Column>
         <Grid.Column width={5}>
-          <ItemSidebar ref={contextRef}/>
+          <ItemSidebar/>
         </Grid.Column>
       </Grid>
     </div>
