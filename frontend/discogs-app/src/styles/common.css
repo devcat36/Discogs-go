@@ -22,3 +22,12 @@ body{
     min-width: 1008px;
     padding: 10px 28px 30px;
 }
+
+.MainArtistSearch input{
+    border-radius: .28571429rem !important;
+    width: 30em;
+}
+
+.TracklistArtistSearch input{
+    border-radius: .28571429rem !important;
+}

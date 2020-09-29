@@ -25,6 +25,7 @@ import ExploreArtists from "./Components/ExploreArtists";
 import MasterDescription from "./Components/MasterDescription";
 import ReleaseDescription from "./Components/ReleaseDescription";
 import ArtistDescription from "./Components/ArtistDescription";
+import AddRelease from "./Components/AddRelease";
 
 function App() {
   function useWindowSize() {
@@ -63,6 +64,7 @@ function App() {
             <Route path={'/master'}><MasterDescription/></Route>
             <Route path={'/release'}><ReleaseDescription/></Route>
             <Route path={'/artist'}><ArtistDescription/></Route>
+            <Route path={'/add'}><AddRelease/></Route>
           </Switch>
         </div>
         <Footer/>
