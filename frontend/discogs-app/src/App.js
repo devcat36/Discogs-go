@@ -26,6 +26,7 @@ import MasterDescription from "./Components/MasterDescription";
 import ReleaseDescription from "./Components/ReleaseDescription";
 import ArtistDescription from "./Components/ArtistDescription";
 import ContributeRelease from "./Components/ContributeRelease";
+import ContributeMaster from "./Components/ContributeMaster";
 
 function App() {
   function useWindowSize() {
@@ -64,7 +65,8 @@ function App() {
             <Route path={'/master'}><MasterDescription/></Route>
             <Route path={'/release'}><ReleaseDescription/></Route>
             <Route path={'/artist'}><ArtistDescription/></Route>
-            <Route path={'/add'}><ContributeRelease mode="add"/></Route>
+            <Route path={'/add'}><ContributeRelease mode='add'/></Route>
+            <Route exact path={'/m'}><ContributeMaster mode='add'/></Route>
           </Switch>
         </div>
         <Footer/>
