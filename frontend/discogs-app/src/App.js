@@ -27,6 +27,7 @@ import ReleaseDescription from "./Components/ReleaseDescription";
 import ArtistDescription from "./Components/ArtistDescription";
 import ContributeRelease from "./Components/ContributeRelease";
 import ContributeMaster from "./Components/ContributeMaster";
+import EditArtist from "./Components/EditArtist";
 
 function App() {
   function useWindowSize() {
@@ -67,6 +68,7 @@ function App() {
             <Route path={'/artist'}><ArtistDescription/></Route>
             <Route path={'/add'}><ContributeRelease mode='add'/></Route>
             <Route exact path={'/m'}><ContributeMaster mode='add'/></Route>
+            <Route exact path={'/a'}><EditArtist initialArtist={{name:'Drake', pictures:[]}}/></Route>
           </Switch>
         </div>
         <Footer/>
