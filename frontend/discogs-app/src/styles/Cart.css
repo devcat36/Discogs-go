@@ -60,7 +60,11 @@
     text-align: right;
 }
 
-.Cart .CostTable th, td{
+.Cart .CostTable th{
+    padding-top: 6px;
+}
+
+.Cart .CostTable td{
     padding-top: 6px;
 }
 

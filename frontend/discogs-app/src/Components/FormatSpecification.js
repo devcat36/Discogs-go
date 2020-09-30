@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Dropdown} from "semantic-ui-react";
 
 let descriptors = {
@@ -62,24 +62,24 @@ for (let fmt in descriptors) {
   }
 }
 
-function FormatSpecification({format}) {
-  return <table> {Object.keys(descriptors[format]).map(cat => {
-    return (
-      <tr>
-        <td style={{width:'10em'}}>{cat}</td>
-        <td>
-          <Dropdown
-            style={{width:'30em'}}
-            placeholder={cat}
-            multiple
-            search
-            selection
-            options={descriptors[format][cat]}
-          />
-        </td>
-      </tr>
-    )
-  })}</table>;
+function FormatSpecification({format, specs, setSpecs}) {
+  return <table> {Object.keys(descriptors[format]).map(cat =>
+    <tr>
+      <td style={{width: '10em'}}>{cat}</td>
+      <td>
+        <Dropdown
+          style={{width: '30em'}}
+          placeholder={cat}
+          multiple
+          search
+          selection
+          options={descriptors[format][cat]}
+          value={specs[cat]?specs[cat]:[]}
+          onChange={(e,data)=>setSpecs({...specs,[cat]:data.value})}
+        />
+      </td>
+    </tr>
+  )}</table>;
 }
 
 export default FormatSpecification;

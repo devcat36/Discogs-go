@@ -15,8 +15,9 @@ function ArtistAddSegment({onChange, onRemove, value, results, loading}) {
           value={value}
           results={results}
           loading={loading}
+          icon={false}
         /></td>
-        <td><Icon color="grey" name="cancel" onClick={onRemove}/></td>
+        <td><Icon link color="grey" name="cancel" onClick={onRemove}/></td>
       </table>
     </Segment>
   </>);

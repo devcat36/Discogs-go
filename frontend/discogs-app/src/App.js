@@ -25,7 +25,7 @@ import ExploreArtists from "./Components/ExploreArtists";
 import MasterDescription from "./Components/MasterDescription";
 import ReleaseDescription from "./Components/ReleaseDescription";
 import ArtistDescription from "./Components/ArtistDescription";
-import AddRelease from "./Components/AddRelease";
+import ContributeRelease from "./Components/ContributeRelease";
 
 function App() {
   function useWindowSize() {
@@ -48,7 +48,7 @@ function App() {
     <div className="main-wrapper">
       <Router>
         <NavBar/>
-        <div style={{minHeight:`${windowHeight-66}px`}}>
+        <div style={{minHeight: `${windowHeight - 66}px`}}>
           <Switch>
             <Route exact path={'/'}><StartPage/></Route>
             <Route path={'/sell/item'}><ItemDescription/></Route>
@@ -64,7 +64,7 @@ function App() {
             <Route path={'/master'}><MasterDescription/></Route>
             <Route path={'/release'}><ReleaseDescription/></Route>
             <Route path={'/artist'}><ArtistDescription/></Route>
-            <Route path={'/add'}><AddRelease/></Route>
+            <Route path={'/add'}><ContributeRelease mode="add"/></Route>
           </Switch>
         </div>
         <Footer/>
