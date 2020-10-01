@@ -31,3 +31,11 @@ body{
 .TracklistArtistSearch input{
     border-radius: .28571429rem !important;
 }
+
+.Settings .field>.selection.dropdown{
+    width: 20em !important;
+}
+
+.Settings .field .ui.input{
+    width: 20em !important;
+}
