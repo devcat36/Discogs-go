@@ -1,0 +1,552 @@
+enum Language{
+    EN
+    KR
+}
+enum TimeZone{
+    UTC
+    ECT
+    EET
+    ART
+    EAT
+    MET
+    NET
+    PLT
+    IST
+    BST
+    VST
+    CTT
+    JST
+    ACT
+    AET
+    SST
+    NST
+    MIT
+    HST
+    AST
+    PST
+    PNT
+    MST
+    CST
+    EST
+    IET
+    PRT
+    CNT
+    AGT
+    BET
+    CAT
+}
+enum PaymentMethod{
+    CREDIT_CARD
+    PAYPAL
+    CASH
+    BANK_TRANSFER
+}
+enum Country{
+    ZW
+    ZM
+    ZA
+    YT
+    YE
+    WS
+    WF
+    VU
+    VN
+    VI
+    VG
+    VE
+    VC
+    VA
+    UZ
+    UY
+    US
+    UM
+    UG
+    UA
+    TZ
+    TW
+    TV
+    TT
+    TR
+    TO
+    TN
+    TM
+    TL
+    TK
+    TJ
+    TH
+    TG
+    TF
+    TD
+    TC
+    SZ
+    SY
+    SX
+    SV
+    ST
+    SS
+    SR
+    SO
+    SN
+    SM
+    SL
+    SK
+    SJ
+    SI
+    SH
+    SG
+    SE
+    SD
+    SC
+    SB
+    SA
+    RW
+    RU
+    RS
+    RO
+    RE
+    QA
+    PY
+    PW
+    PT
+    PS
+    PR
+    PN
+    PM
+    PL
+    PK
+    PH
+    PG
+    PF
+    PE
+    PA
+    OM
+    NZ
+    NU
+    NR
+    NP
+    NO
+    NL
+    NI
+    NG
+    NF
+    NE
+    NC
+    NA
+    MZ
+    MY
+    MX
+    MW
+    MV
+    MU
+    MT
+    MS
+    MR
+    MQ
+    MP
+    MO
+    MN
+    MM
+    ML
+    MK
+    MH
+    MG
+    MF
+    ME
+    MD
+    MC
+    MA
+    LY
+    LV
+    LU
+    LT
+    LS
+    LR
+    LK
+    LI
+    LC
+    LB
+    LA
+    KZ
+    KY
+    KW
+    KR
+    KP
+    KN
+    KM
+    KI
+    KH
+    KG
+    KE
+    JP
+    JO
+    JM
+    JE
+    IT
+    IS
+    IR
+    IQ
+    IO
+    IN
+    IM
+    IL
+    IE
+    ID
+    HU
+    HT
+    HR
+    HN
+    HM
+    HK
+    GY
+    GW
+    GU
+    GT
+    GS
+    GR
+    GQ
+    GP
+    GN
+    GM
+    GL
+    GI
+    GH
+    GG
+    GF
+    GE
+    GD
+    GB
+    GA
+    FR
+    FO
+    FM
+    FK
+    FJ
+    FI
+    ET
+    ES
+    ER
+    EH
+    EG
+    EE
+    EC
+    DZ
+    DO
+    DM
+    DK
+    DJ
+    DE
+    CZ
+    CY
+    CX
+    CW
+    CV
+    CU
+    CR
+    CO
+    CN
+    CM
+    CL
+    CK
+    CI
+    CH
+    CG
+    CF
+    CD
+    CC
+    CA
+    BZ
+    BY
+    BW
+    BV
+    BT
+    BS
+    BR
+    BQ
+    BO
+    BN
+    BM
+    BL
+    BJ
+    BI
+    BH
+    BG
+    BF
+    BE
+    BD
+    BB
+    BA
+    AZ
+    AX
+    AW
+    AU
+    AT
+    AS
+    AR
+    AQ
+    AO
+    AM
+    AL
+    AI
+    AG
+    AF
+    AE
+    AD
+}
+enum Currency{
+    USD
+    EUR
+    JPY
+    AUD
+    CHF
+    KRW
+    GBP
+    NZD
+    VND
+    HKD
+}
+enum Condition{
+    VG_PLUS
+    NM
+    M
+    VG
+    G_PLUS
+    G
+    FAIR
+    POOR
+}
+enum Format{
+    VINYL
+    ACETATE
+    FLEXIDISC
+    CD
+    DVD
+    BLURAY
+    SACD
+}
+enum Genre{
+    ELECTRONIC
+    REGGAE
+    NONMUSIC
+    CHILDRENS
+    HIPHOP
+    LATIN
+    POP
+    FOLK
+    JAZZ
+    FUNK
+    CLASSICAL
+    STAGE
+    ROCK
+    BLIES
+    BRASS
+}
+enum OrderStatus{
+    NEW_ORDER
+    INVOICE_SENT
+    PAYEMNT_RECIEVED
+    SHIPPED
+    CANCELED
+}
+enum FilterCategory{
+    CURRENCY
+    GENRE
+    STYLE
+    FORMAT
+    MEDIA_CONDITIOIN
+    SLEEVE_CONDITION
+    YEAR
+}
+
+scalar DateTime
+scalar Date
+scalar Cost
+scalar FormatSpec
+scalar Duration
+
+union SearchObject = Artist | Release | Master
+
+input FilterInput{
+    currency: Currency
+    cost: [Cost!]
+    genre: [Genre!]
+    format: [Format!]
+    mediaCondition: Condition
+    sleeveCondition: Condition
+    year: Int
+}
+input AdvancedSearchInput{
+    artist: String
+    title: String
+    label: String
+    year: Int
+    format: Format
+}
+
+type Query {
+    user(id: ID!): User!
+    search(term: String!, filter: FilterInput, sort: String, startIndex: Int, endIndex: Int): SearchResult!
+    advancedSearch(term: AdvancedSearchInput, amount: Int): SearchResult!
+    item(id: ID!): Item!
+    order(id: ID!): Order!
+    release(id: ID!): Release!
+    artist(id: ID!): Artist!
+    master(id: ID!): Master!
+}
+
+type FilterObject{
+    name: String!
+    amount: Int!
+}
+
+type Filter{
+    category: FilterCategory!
+    filter: [FilterObject!]!
+}
+
+type User{
+    id: ID!
+    userName: String!
+    realName: String
+    image: String
+    cart: Cart
+    messages: [Messsage]
+    adminPermission: Boolean!
+    sellerPermission: Boolean!
+    contributerPermission: Boolean!
+    emailAddress: String!
+    language: Language
+    timeZone: TimeZone
+    profile: String
+    location: String
+    homePage: String
+    sellerSettings: SellerInfo
+    buyerSettings: BuyerInfo
+}
+
+type SellerInfo{
+    paymentMethods: [PaymentMethod!]!
+    country: [Country!]
+    sellerTerm: String!
+}
+
+type Address{
+    fullName: String!
+    address1: String!
+    address2: String
+    city: String!
+    region: String!
+    country: Country!
+}
+
+type BuyerInfo{
+    currency: Currency!
+    address: Address!
+}
+
+type Cart{
+    itemCount: Int!
+    sellerCount: Int!
+    orders: [Order!]!
+}
+
+type Order{
+    id: ID!
+    dateTimeCreated: DateTime!
+    dataTimeModified: DateTime!
+    items: [Item!]!
+    seller: User!
+    subTotoal: Cost!
+    total: Cost!
+    shipping: Cost!
+    timeline: [Messsage!]!
+    status: OrderStatus!
+}
+
+type Item{
+    id: ID
+    release: Release!
+    price: Cost!
+    shipping: Cost
+    mediaCondition: Condition!
+    sleeveCondition: Condition!
+    seller: User!
+    notes: String
+}
+
+type Release{
+    id: ID
+    image: [String!]
+    artist: [String!]!
+    title: String!
+    format: Format!
+    formatSpec: [FormatSpec!]
+    countrt: Country
+    year: Int
+    genres: [Genre!]
+    trackList(order: String): [Track!]!
+    notes: String
+    submissionNotes: String
+    releaseDate: Date
+    master: Master
+}
+
+type Track{
+    pos: String
+    artist: [Artist!]!
+    title: String!
+    duration: Duration
+}
+
+type Artist{
+    id: ID!
+    name: String!
+    alias: [String!]
+    member: [String!]
+    profile: String
+    homePage: [String!]
+    submissionNotes: String
+    master(sort: String): [Master!]
+}
+
+type Master{
+    id: ID!
+    title: String!
+    artist: [Artist!]!
+    image: [String!]
+    genre: [Genre!]
+    year: Int
+    notes: String
+    submissionNotes: String
+    keyRelease: Release!
+    release(sort: String): [Release]!
+}
+
+interface Messsage{
+    id: ID!
+    sender: ID!
+    reciever: ID!
+    timestamp: DateTime!
+}
+
+type OrderStatusMessage implements Messsage{
+    id: ID!
+    sender: ID!
+    reciever: ID!
+    timestamp: DateTime!
+    order: Order!
+    status: OrderStatus!
+}
+
+type CustomMessage implements Messsage{
+    id: ID!
+    sender: ID!
+    reciever: ID!
+    timestamp: DateTime!
+    content: String!
+}
+
+type SearchResult{
+    totalResults: Int!
+    result: [SearchObject!]!
+    filter: [Filter!]!
+}

@@ -67,7 +67,6 @@ function ContributeMaster({mode, initialMaster}) {
                   onChange={(e, data) => setMaster({...master, submissionNotes: data.value})}
                 />
               </Form>
-              List one Release ID per line
             </Grid.Column>
           </Grid.Row>
         </Grid>

@@ -201,7 +201,7 @@ function SellerSettings({initialSettings}) {
             />
           </Form.Field>
           <Form.Field>
-            <label>Full Name</label>
+            <label>Region/State</label>
             <Input
               value={settings.postalCode}
               onChange={(e, data) => setSettings({...settings, postalCode: data.value})}
@@ -361,7 +361,7 @@ function BuyerSettings({initialSettings}) {
             />
           </Form.Field>
           <Form.Field>
-            <label>Full Name</label>
+            <label>Region/State</label>
             <Input
               value={settings.postalCode}
               onChange={(e, data) => setSettings({...settings, postalCode: data.value})}
