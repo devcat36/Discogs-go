@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133d0a0f-2787-4c29-963c-49506b50f331" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mock_db.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mocks.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/MainSearchBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/hooks/useToken.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/styles/MainSearchBar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resolvers.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/resolvers.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/server.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/Menus/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/Menus/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="133d0a0f-2787-4c29-963c-49506b50f331" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
