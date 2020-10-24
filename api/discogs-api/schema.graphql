@@ -337,7 +337,7 @@ enum Genre{
     CLASSICAL
     STAGE
     ROCK
-    BLIES
+    BLUES
     BRASS
 }
 enum OrderStatus{
@@ -356,18 +356,20 @@ enum FilterCategory{
     SLEEVE_CONDITION
     YEAR
 }
+enum MessageKind{
+    ORDER,
+    CUSTOM
+}
 
 scalar DateTime
-scalar Date
-scalar Cost
-scalar FormatSpec
 scalar Duration
 
-union SearchObject = Artist | Release | Master
+union SearchObject = Artist | Item | Master
 
 input FilterInput{
     currency: Currency
-    cost: [Cost!]
+    costLower: Float
+    costUpper: Float
     genre: [Genre!]
     format: [Format!]
     mediaCondition: Condition
@@ -383,24 +385,36 @@ input AdvancedSearchInput{
 }
 
 type Query {
-    user(id: ID!): User!
+    user(id: ID!, isToken: Boolean): User!
     search(term: String!, filter: FilterInput, sort: String, startIndex: Int, endIndex: Int): SearchResult!
     advancedSearch(term: AdvancedSearchInput, amount: Int): SearchResult!
     item(id: ID!): Item!
-    order(id: ID!): Order!
+    order(id: ID!, token: String): Order!
     release(id: ID!): Release!
     artist(id: ID!): Artist!
     master(id: ID!): Master!
 }
 
-type FilterObject{
-    name: String!
-    amount: Int!
+type FormatSpec{
+    kind: String!
+    value: String!
+}
+
+type Cost{
+    currency: Currency!
+    value: Float!
+}
+
+type Date{
+    year: Int!
+    month: Int!
+    day: Int!
 }
 
 type Filter{
     category: FilterCategory!
-    filter: [FilterObject!]!
+    name: String!
+    amount: Int!
 }
 
 type User{
@@ -409,7 +423,7 @@ type User{
     realName: String
     image: String
     cart: Cart
-    messages: [Messsage]
+    messages: [Message]
     adminPermission: Boolean!
     sellerPermission: Boolean!
     contributerPermission: Boolean!
@@ -425,7 +439,7 @@ type User{
 
 type SellerInfo{
     paymentMethods: [PaymentMethod!]!
-    country: [Country!]
+    country: Country!
     sellerTerm: String!
 }
 
@@ -444,8 +458,8 @@ type BuyerInfo{
 }
 
 type Cart{
-    itemCount: Int!
-    sellerCount: Int!
+#    itemCount: Int!
+#    sellerCount: Int!
     orders: [Order!]!
 }
 
@@ -455,15 +469,17 @@ type Order{
     dataTimeModified: DateTime!
     items: [Item!]!
     seller: User!
+    buyer: User!
     subTotoal: Cost!
     total: Cost!
     shipping: Cost!
-    timeline: [Messsage!]!
+    timeline: [Message!]!
     status: OrderStatus!
 }
 
 type Item{
     id: ID
+    image: [String!]!
     release: Release!
     price: Cost!
     shipping: Cost
@@ -474,13 +490,13 @@ type Item{
 }
 
 type Release{
-    id: ID
-    image: [String!]
-    artist: [String!]!
+    id: ID!
+    image: [String!]!
+    artist: [Artist!]!
     title: String!
     format: Format!
     formatSpec: [FormatSpec!]
-    countrt: Country
+    country: Country
     year: Int
     genres: [Genre!]
     trackList(order: String): [Track!]!
@@ -492,7 +508,7 @@ type Release{
 
 type Track{
     pos: String
-    artist: [Artist!]!
+    artist: [Artist!]
     title: String!
     duration: Duration
 }
@@ -500,6 +516,7 @@ type Track{
 type Artist{
     id: ID!
     name: String!
+    image: [String!]!
     alias: [String!]
     member: [String!]
     profile: String
@@ -512,7 +529,7 @@ type Master{
     id: ID!
     title: String!
     artist: [Artist!]!
-    image: [String!]
+    image: [String!]!
     genre: [Genre!]
     year: Int
     notes: String
@@ -521,28 +538,16 @@ type Master{
     release(sort: String): [Release]!
 }
 
-interface Messsage{
+type Message{
     id: ID!
-    sender: ID!
-    reciever: ID!
+    owner: User!
+    sender: User!
+    reciever: User!
     timestamp: DateTime!
-}
-
-type OrderStatusMessage implements Messsage{
-    id: ID!
-    sender: ID!
-    reciever: ID!
-    timestamp: DateTime!
-    order: Order!
-    status: OrderStatus!
-}
-
-type CustomMessage implements Messsage{
-    id: ID!
-    sender: ID!
-    reciever: ID!
-    timestamp: DateTime!
-    content: String!
+    kind: MessageKind!
+    order: Order
+    orderStatus: OrderStatus
+    content: String
 }
 
 type SearchResult{

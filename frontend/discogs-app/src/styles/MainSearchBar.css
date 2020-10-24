@@ -1,0 +1,8 @@
+.MainSearchBar input{
+    width: 100%;
+    border-radius: 0.3rem !important;
+}
+
+.MainSearchBar div{
+    width: 100%;
+}

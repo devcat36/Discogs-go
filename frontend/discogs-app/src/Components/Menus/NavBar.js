@@ -1,21 +1,36 @@
-import React, {useCallback, useState} from 'react';
-import {Menu, Image, Input, Button, Container, Icon} from 'semantic-ui-react'
+import React, {useCallback, useContext, useState, useEffect} from 'react';
+import {Menu, Image, Input, Button, Container, Icon, Dropdown} from 'semantic-ui-react'
 import {Link, useHistory} from 'react-router-dom';
-import logo from '../../images/discogs-white.png';
+import {useQuery, gql, useLazyQuery} from '@apollo/client';
 import {useAuth0} from "@auth0/auth0-react";
+import useToken from "../../hooks/useToken";
+import logo from '../../images/discogs-white.png';
+import MainSearchBar from "../MainSearchBar";
+
+const USER = gql`
+    query NavbarProfile($id: ID!){
+        user(id:$id, isToken: true){
+            userName
+            image
+        }
+    }
+`;
 
 function NavBar(props) {
-  const [activeItem, setActiveItem] = useState("");
   const history = useHistory();
-  const {loginWithRedirect} = useAuth0();
   const handleItemClick = useCallback((e, {name}) => {
-    //setActiveItem(name);
     if (name === 'Home') history.push('/');
     else if (name === 'Explore') history.push('/explore/master');
     else if (name === 'Buy Music') history.push('/sell/list');
     else if (name === 'cart') history.push('/sell/cart');
     else if (name === 'Sell Music') history.push('/sell')
-  });
+  }, [history]);
+  const {loginWithRedirect, isAuthenticated, logout} = useAuth0();
+  const [getData, {data}] = useLazyQuery(USER);
+  const token = useToken();
+  useEffect(() => {
+    token && getData({variables: {id:token[1]}});
+  },[token, getData]);
   return (
     <>
       <Menu inverted borderless style={{borderRadius: 0, marginBottom: 0}}>
@@ -24,46 +39,57 @@ function NavBar(props) {
             <Image src={logo} style={{marginRight: '1.5em', cursor: 'pointer'}}
                    onClick={() => handleItemClick(null, {name: 'Home'})}/>
           </Menu.Item>
-          <Menu.Item style={{width: 'calc(100% - 900px)', minWidth: '300px'}}>
-            <Input style={{width: '100%'}} className="icon" icon="search"
-                   placeholder="Search artists, albums and more..."/>
+          <Menu.Item style={{width: 'calc(100% - 800px)', minWidth: '300px'}}>
+            <MainSearchBar/>
           </Menu.Item>
           <Menu.Item
             name="Explore"
-            active={activeItem === 'Explore'}
             onClick={handleItemClick}
           />
           <Menu.Item
             name="Buy Music"
-            active={activeItem === 'Buy Music'}
             onClick={handleItemClick}
           />
           <Menu.Item
             name="Sell Music"
-            active={activeItem === 'Sell Music'}
             onClick={handleItemClick}
           />
           <Menu.Menu position="right">
-            <Menu.Item name="cart" style={{padding: 0}}>
-              <div
-                style={{
-                  cursor: 'pointer',
-                  height: '100%',
-                  width: '4rem',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-                onClick={() => handleItemClick(null, {name: 'cart'})}
-              ><Icon name={'cart'}/></div>
-            </Menu.Item>
             <Menu.Item
-              name="Log In"
-              onClick={()=>loginWithRedirect()}
-            />
-            <Menu.Item name="Register">
-              <Button color="green" style={{height: 35}}>Register</Button>
+              name="cart"
+              onClick={() => handleItemClick(null, {name: 'cart'})}
+            >
+              <Icon name={'cart'}/>
             </Menu.Item>
+            {!isAuthenticated && <Menu.Item
+              name="Log In"
+              onClick={() => loginWithRedirect()}
+            />}
+            {!isAuthenticated && <Menu.Item name="Register">
+              <Button color="green" style={{height: '35px'}}>Register</Button>
+            </Menu.Item>}
+            {isAuthenticated && <Menu.Item name="message" onClick={() => {
+            }}>
+              <Icon name="mail"/>
+            </Menu.Item>}
+            {isAuthenticated && <Menu.Item>
+              <Dropdown
+                trigger={<span><Image avatar
+                                      src={data && data.user.image}/> {data && data.user.userName}</span>}
+                pointing="top left"
+                icon={null}
+              >
+                <Dropdown.Menu>
+                  <Dropdown.Item icon="user" text="Account" onClick={() => {
+                  }}/>
+                  <Dropdown.Item icon="settings" text="Settings" onClick={() => {
+                  }}/>
+                  <Dropdown.Item icon="sign-out" text="Sign Out" onClick={() => {
+                    logout({returnTo: window.location.origin})
+                  }}/>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu.Item>}
           </Menu.Menu>
         </Container>
       </Menu>

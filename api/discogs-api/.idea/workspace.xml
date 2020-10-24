@@ -2,20 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="133d0a0f-2787-4c29-963c-49506b50f331" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/discogs-api.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resolvers.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schema.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/ContributeMaster.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/ContributeMaster.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock_db.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mocks.mjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/MainSearchBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/hooks/useToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/styles/MainSearchBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resolvers.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/resolvers.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/server.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/Menus/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/Menus/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/Components/Settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/discogs-app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/discogs-app/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +54,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -63,7 +65,8 @@
       <option name="presentableId" value="Default" />
       <updated>1601636973923</updated>
       <workItem from="1601636975004" duration="1953000" />
-      <workItem from="1601638934247" duration="15659000" />
+      <workItem from="1601638934247" duration="16539000" />
+      <workItem from="1602911224388" duration="37330000" />
     </task>
     <servers />
   </component>
@@ -82,10 +85,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1254" y="160" width="372" height="723" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601639033216" />
+    <state x="742" y="277" width="436" height="490" key="FileChooserDialogImpl" timestamp="1602913817008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="742" y="277" width="436" height="490" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602913817008" />
     <state x="489" y="200" key="SettingsEditor" timestamp="1601638927181">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="489" y="200" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601638927181" />
+    <state x="557" y="128" width="806" height="788" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1603017886468">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="557" y="128" width="806" height="788" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1603017886468" />
     <state x="969" y="194" width="581" height="622" key="find.popup" timestamp="1601802452990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
