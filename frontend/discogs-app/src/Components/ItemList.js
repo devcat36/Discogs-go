@@ -1,13 +1,14 @@
-import React, {useState} from "react";
-import {Table, Label, Menu, Icon, Segment, Header, Dropdown} from "semantic-ui-react";
+import React from "react";
+import {Table, Menu, Icon} from "semantic-ui-react";
+import { CONDITION_OPTIONS, COUNTRY_OPTIONS } from "../constants";
 import ItemListElement from "./ItemListElement";
 import PaginationTop from "./PaginationTop";
 
 const amountOptions = [
-  {key: '25', text: '25', value: '25'},
-  {key: '50', text: '50', value: '50'},
-  {key: '100', text: '100', value: '100'},
-  {key: '200', text: '200', value: '200'}
+  {key: '25', text: '25', value: 25},
+  {key: '50', text: '50', value: 50},
+  {key: '100', text: '100', value: 100},
+  {key: '200', text: '200', value: 200}
 ];
 
 const sortOptions = [
@@ -23,12 +24,19 @@ const sortOptions = [
   {key: 'Price Highest', text: 'Price Highest', value: 'Price Highest'},
 ];
 
-function ItemList(props) {
+const image_placeholder = "";
+
+function ItemList({items, total, showCount, startIndex, endIndex, sortOrder}) {
   return (
     <>
       <PaginationTop
         amountOptions={amountOptions}
         sortOptions={sortOptions}
+        listingAmount={showCount}
+        startIndex={startIndex}
+        endIndex={endIndex}
+        total={total}
+        sortOrder={sortOrder}
       />
       <Table unstackable>
         <Table.Header>
@@ -41,66 +49,24 @@ function ItemList(props) {
         </Table.Header>
 
         <Table.Body>
-          <ItemListElement
-            imgsrc={'https://img.discogs.com/AY-fpz65XBip08dlD31HfmpTV40=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-12862136-1582477074-1716.jpeg.jpg'}
-            listedName={'Rita Ora - Phoenix (CD, Album, Ltd)'}
-            label={['Atlantic', 'Atlantic']}
-            mediaCondition={'Mint (M)'}
-            sleeveCondition={'Mint (M)'}
-            seller={'KUPIKU-COM'}
-            country={'Japan'}
-            currency={'CHF'}
-            price={31.67}
-            shipping={8.10}
-          />
-          <ItemListElement
-            imgsrc={'https://img.discogs.com/mGxu680VUe0mzFiaU5akD6R1SVU=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-852079-1494591916-6333.jpeg.jpg'}
-            listedName={'Sting - The Soul Cages (CD, Maxi)'}
-            label={['A&M Records']}
-            mediaCondition={'Very Good Plus (VG+)'}
-            sleeveCondition={'Very Good Plus (VG+)'}
-            seller={'soulsounds65'}
-            country={'United States'}
-            currency={'USD'}
-            price={8.99}
-            shipping={8.10}
-          />
-          <ItemListElement
-            imgsrc={'https://img.discogs.com/VwM8g8JA5YIoQSN-D1a7jIOUN7U=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-14532271-1576487077-9351.jpeg.jpg'}
-            listedName={'Laxmikant Pyarelal* • Anand Bakshi - Farz (7", EP)'}
-            label={['Angel Records']}
-            mediaCondition={'Mint (M)'}
-            sleeveCondition={'Mint (M)'}
-            seller={'KUPIKU-COM'}
-            country={'Japan'}
-            currency={'CHF'}
-            price={16.67}
-            shipping={8.10}
-          />
-          <ItemListElement
-            imgsrc={'https://img.discogs.com/ck00rRwLMekRcyqNCyau4PWZ1ls=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-8426093-1461370675-8802.jpeg.jpg'}
-            listedName={'La 5ta Galaxia - 5ta Galaxia (LP, Album)'}
-            label={['Sono-Rodven']}
-            mediaCondition={'Mint (M)'}
-            sleeveCondition={'Mint (M)'}
-            seller={'roxanmusic'}
-            country={'India'}
-            currency={'EUR'}
-            price={21.67}
-            shipping={4.10}
-          />
-          <ItemListElement
-            imgsrc={'https://img.discogs.com/Vqf3aSPi94JGIz4wpshQ22ey4z4=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-1065960-1421225588-7885.jpeg.jpg'}
-            listedName={'Santana - Abraxas (LP, Album, San)'}
-            label={['Atlantic', 'Atlantic']}
-            mediaCondition={'Mint (M)'}
-            sleeveCondition={'Mint (M)'}
-            seller={'Studebakerhawk'}
-            country={'Japan'}
-            currency={'CHF'}
-            price={31.67}
-            shipping={8.10}
-          />
+          {items.map(item=><ItemListElement
+            imgsrc={item.image.length > 0
+              ? item.image
+              : item.release.image.length > 0
+              ? item.release.image[0]
+              : image_placeholder}
+            listedName={`${item.release.artist.length>1?'Variois Artists':item.release.artist[0].name} - ${item.release.title} (${item.release.format})`}
+            mediaCondition={CONDITION_OPTIONS.find(option=>option.value===item.mediaCondition).text}
+            sleeveCondition={CONDITION_OPTIONS.find(option=>option.value===item.sleeveCondition).text}
+            comments={item.comments}
+            seller={item.seller.userName}
+            country={COUNTRY_OPTIONS.find(option=>option.value===item.seller.sellerSettings.country).text}
+            currency={item.price.currency}
+            price={item.price.value}
+            shipping={item.shipping.value}
+            releaseId={item.release.id}
+            itemId={item.id}
+          />)}
 
         </Table.Body>
 

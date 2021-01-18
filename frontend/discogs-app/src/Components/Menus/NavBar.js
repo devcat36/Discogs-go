@@ -1,7 +1,7 @@
-import React, {useCallback, useContext, useState, useEffect} from 'react';
-import {Menu, Image, Input, Button, Container, Icon, Dropdown} from 'semantic-ui-react'
-import {Link, useHistory} from 'react-router-dom';
-import {useQuery, gql, useLazyQuery} from '@apollo/client';
+import React, {useCallback, useEffect} from 'react';
+import {Menu, Image, Button, Container, Icon, Dropdown} from 'semantic-ui-react'
+import {useHistory} from 'react-router-dom';
+import {gql, useLazyQuery} from '@apollo/client';
 import {useAuth0} from "@auth0/auth0-react";
 import useToken from "../../hooks/useToken";
 import logo from '../../images/discogs-white.png';
@@ -16,14 +16,14 @@ const USER = gql`
     }
 `;
 
-function NavBar(props) {
+function NavBar() {
   const history = useHistory();
   const handleItemClick = useCallback((e, {name}) => {
     if (name === 'Home') history.push('/');
-    else if (name === 'Explore') history.push('/explore/master');
-    else if (name === 'Buy Music') history.push('/sell/list');
-    else if (name === 'cart') history.push('/sell/cart');
-    else if (name === 'Sell Music') history.push('/sell')
+    else if (name === 'Explore') history.push('/explore/search/master');
+    else if (name === 'Buy Music') history.push('/marketplace/listings/');
+    else if (name === 'cart') history.push('/marketplace/cart');
+    else if (name === 'Sell Music') history.push('/marketplace/sell/list')
   }, [history]);
   const {loginWithRedirect, isAuthenticated, logout} = useAuth0();
   const [getData, {data}] = useLazyQuery(USER);

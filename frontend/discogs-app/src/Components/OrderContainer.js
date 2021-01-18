@@ -3,7 +3,6 @@ import {
   Segment,
   Header,
   Icon,
-  Item,
   Image,
   Table,
   Divider,

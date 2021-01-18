@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Grid, Menu, Header, Segment, Dropdown, Button, Form, Input, TextArea, Icon} from "semantic-ui-react";
-import * as Currency from "../currency";
+import * as Currency from "../constants";
 import {Link} from "react-router-dom";
 
 const countryOptions = [

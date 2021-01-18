@@ -23,6 +23,13 @@
 
 .ItemSidebar .ConditionLabel{
     font-weight: bold;
+    display: inline-block;
+    width: 4rem;
+}
+
+.ItemSidebar .SellerLabel{
+    font-weight: bold;
+    margin-right: 1rem;
 }
 
 .ItemSidebar .Seller{
