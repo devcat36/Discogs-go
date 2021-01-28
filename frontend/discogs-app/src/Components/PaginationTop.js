@@ -37,14 +37,12 @@ function PaginationTop({
                 compact
                 selection
                 options={sortOptions}
-                // selectedLabel={sortOrder}
                 value={sortOrder}
                 style={{ margin: "0 2rem 0 1rem" }}
                 onChange={(e, data) => {
                   let order = sortOptions.find(
                     (item) => item.key === data.value
                   );
-                  // setSortOrder(order);
                   if (typeof onSortOrderChanged == "function")
                     onSortOrderChanged(order);
                 }}

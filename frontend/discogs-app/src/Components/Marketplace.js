@@ -150,7 +150,6 @@ function Marketplace() {
     .flat(Infinity)
     .filter((filter) => filter != null);
 
-  console.log(selectedFilters);
   return (
     <Grid columns={2}>
       <Grid.Row>

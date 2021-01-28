@@ -90,10 +90,10 @@ function App() {
                 <Route path={"/marketplace/store/"}>
                   <SellerStore />
                 </Route>
-                <Route path={"/explore/search/master"}>
+                <Route path={"/explore/search/master/:query"}>
                   <ExploreMasters />
                 </Route>
-                <Route path={"/explore/search/artist"}>
+                <Route path={"/explore/search/artist/:query"}>
                   <ExploreArtists />
                 </Route>
                 <Route path={"/explore/master/"}>
