@@ -1,48 +1,91 @@
-import React from "react";
-import {Button, Divider, Grid, Header, Item, List, Table} from "semantic-ui-react"
-import {Link} from "react-router-dom"
+import React, { useState } from "react";
+import {
+  Button,
+  Divider,
+  Grid,
+  Header,
+  Item,
+  Tab,
+  Table,
+} from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useQuery, gql } from "@apollo/client";
 import PaginationTop from "./PaginationTop";
+import MasterDescription from "./MasterDescription";
 
 const amountOptions = [
-  {key: '25', text: '25', value: '25'},
-  {key: '50', text: '50', value: '50'},
-  {key: '100', text: '100', value: '100'},
-  {key: '200', text: '200', value: '200'}
+  { key: "5", text: "5", value: "5" },
+  { key: "10", text: "10", value: "10" },
+  { key: "25", text: "25", value: "25" },
+  { key: "50", text: "50", value: "50" },
 ];
 
 const sortOptions = [
-  {key: 'Title A-Z', text: 'Title A-Z', value: 'Title A-Z'},
-  {key: 'Title Z-A', text: 'Title Z-A', value: 'Title Z-A'},
-  {key: 'Label A-Z', text: 'Label A-Z', value: 'Label A-Z'},
-  {key: 'Label Z-A', text: 'Label Z-A', value: 'Label Z-A'},
-  {key: 'Year A-Z', text: 'Year A-Z', value: 'Year A-Z'},
-  {key: 'Year Z-A', text: 'Year Z-A', value: 'Year Z-A'},
+  { key: "Title A-Z", text: "Title A-Z", value: "Title A-Z" },
+  { key: "Title Z-A", text: "Title Z-A", value: "Title Z-A" },
+  { key: "Label A-Z", text: "Label A-Z", value: "Label A-Z" },
+  { key: "Label Z-A", text: "Label Z-A", value: "Label Z-A" },
+  { key: "Year A-Z", text: "Year A-Z", value: "Year A-Z" },
+  { key: "Year Z-A", text: "Year Z-A", value: "Year Z-A" },
 ];
 
+const ARTIST_QUERY = gql`
+  query ArtistDescription($id: ID!) {
+    artist(id: $id) {
+      id
+      name
+      image
+      alias
+      member
+      profile
+      homePage
+      submissionNotes
+      master {
+        id
+        title
+        year
+        image
+      }
+    }
+  }
+`;
+
 function ArtistDescription() {
+  const [listingAmount, setListingAmount] = useState("5");
+  const [sortOrder, setSortOrder] = useState("Year A-Z");
+  const [page, setPage] = useState(1);
+  const { id } = useParams();
+  const { data } = useQuery(ARTIST_QUERY, { variables: { id: id } });
+  if (!data) return null;
+
   return (
-    <div className={'ItemDescription contained'}>
+    <div className={"ItemDescription contained"}>
       <Grid divided>
         <Grid.Column width={11}>
-          <div className={'Description'}>
-            <Item.Group unstackable className={'ItemSpecs'}>
+          <div className={"Description"}>
+            <Item.Group unstackable className={"ItemSpecs"}>
               <Item>
-                <Item.Image size={'small'}
-                            style={{width: '200px'}}
-                            src={'https://img.discogs.com/ETnp4-noE6BZ1VbFd9aE8_1BlyE=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/A-261736-1107701759.jpg.jpg'}/>
+                <Item.Image
+                  size={"small"}
+                  style={{ width: "200px" }}
+                  src={data.artist.image[0]}
+                />
                 <Item.Content>
-                  <Item.Header><h2>Die Kreuzen</h2></Item.Header>
-                  <div className="Specs" style={{display: 'flex'}}>
-                    <div style={{minWidth: '7em'}}>Profile:</div>
-                    <div style={{display: 'block'}}><p>Proto-grunge/hardcore/noise quartet from Milwaukee, which was
-                      formed in 1981 and broke up in the early 1992. Members were also involved in a number of other
-                      groups, including Chainfall, Carnival Strippers, Crime And Judy, Fuckface, Decapitado, Impact
-                      Test, War On The Saints and Wreck (2).</p></div>
+                  <Item.Header>
+                    <h2>{data.artist.name}</h2>
+                  </Item.Header>
+                  <div className="Specs" style={{ display: "flex" }}>
+                    <div style={{ minWidth: "7em" }}>Profile:</div>
+                    <div style={{ display: "block" }}>
+                      <p>{data.artist.profile}</p>
+                    </div>
                   </div>
-                  <div className="Specs" style={{display: 'flex'}}>
-                    <div style={{minWidth: '7em'}}>Members:</div>
-                    <div style={{display: 'block'}}><p>Brian Egeness, Dan Kubinski, Erik Tunison, Herman Egeness, Jay
-                      Tiller, Keith Brammer</p></div>
+                  <div className="Specs" style={{ display: "flex" }}>
+                    <div style={{ minWidth: "7em" }}>Members:</div>
+                    <div style={{ display: "block" }}>
+                      <p>{data.artist.member.join(", ")}</p>
+                    </div>
                   </div>
                 </Item.Content>
               </Item>
@@ -51,55 +94,53 @@ function ArtistDescription() {
         </Grid.Column>
         <Grid.Column width={5}>
           <div className="ItemSidebar">
-            <Header as={'h3'}>Artist</Header>
-            <Divider/>
-            <Link>Edit Artist</Link><br/>
-            <Header as={'h3'}>Marketplace</Header>
-            <Divider/>
-            <Button floated="left" style={{width: '48%'}} color="blue">Vinyl and CD</Button>
+            <Header as={"h3"}>Artist</Header>
+            <Divider />
+            <Link>Edit Artist</Link>
+            <br />
+            <Header as={"h3"}>Marketplace</Header>
+            <Divider />
+            <Button floated="left" style={{ width: "48%" }} color="blue">
+              Vinyl and CD
+            </Button>
           </div>
         </Grid.Column>
       </Grid>
-      <Header as={'h3'}>Discography</Header>
-      <Divider/>
+      <Header as={"h3"}>Discography</Header>
+      <Divider />
       <PaginationTop
         amountOptions={amountOptions}
         sortOptions={sortOptions}
+        listingAmount={listingAmount}
+        sortOrder={sortOrder}
+        onSortOrderChanged={() => {}}
+        onListingAmountChanged={() => {}}
+        startIndex={(page - 1) * listingAmount + 1}
+        endIndex={page * listingAmount}
+        total={data.artist.master.length}
       />
-      <Table basic={'very'} unstackable>
+      <Table basic={"very"} unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell colSpan="2">Title</Table.HeaderCell>
-            <Table.HeaderCell>Release</Table.HeaderCell>
-            <Table.HeaderCell>Label</Table.HeaderCell>
             <Table.HeaderCell>Year</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row>
-            <Table.Cell style={{width: '50px'}}>
-              <img style={{width: '50px', display: 'inline'}}
-                   src="https://img.discogs.com/_ltz5VuUuu5X1bxQz-OBTYN2UBY=/100x100/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-12170508-1529708807-1663.jpeg.jpg"/>
-            </Table.Cell>
-            <Table.Cell textAlign="left">
-              <Link>Starship Demo</Link>
-            </Table.Cell>
-            <Table.Cell>Album</Table.Cell>
-            <Table.Cell>Not on Label</Table.Cell>
-            <Table.Cell>1981</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell style={{width: '50px'}}>
-              <img style={{width: '50px', display: 'inline'}}
-                   src="https://img.discogs.com/uMio3PkEvrJqTqn5nSTr4M_Msz8=/100x100/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-3061218-1430175481-1465.jpeg.jpg"/>
-            </Table.Cell>
-            <Table.Cell textAlign="left">
-              <Link>Cow And Beer</Link>
-            </Table.Cell>
-            <Table.Cell>EP</Table.Cell>
-            <Table.Cell>Version Sound</Table.Cell>
-            <Table.Cell>1983</Table.Cell>
-          </Table.Row>
+          {data.artist.master.map((master) => (
+            <Table.Row>
+              <Table.Cell style={{ width: "50px" }}>
+                <img
+                  style={{ width: "50px", display: "inline" }}
+                  src={master.image[0]}
+                />
+              </Table.Cell>
+              <Table.Cell>
+                <Link>{master.title}</Link>
+              </Table.Cell>
+              <Table.Cell>{master.year}</Table.Cell>
+            </Table.Row>
+          ))}
         </Table.Body>
       </Table>
     </div>

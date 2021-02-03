@@ -102,7 +102,7 @@ function App() {
                 <Route path={"/explore/release/"}>
                   <ReleaseDescription />
                 </Route>
-                <Route path={"/explore/artist/"}>
+                <Route path={"/explore/artist/:id"}>
                   <ArtistDescription />
                 </Route>
                 <Route path={"/explore/contribute/release/"}>
