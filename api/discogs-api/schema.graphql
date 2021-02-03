@@ -1,557 +1,563 @@
-enum Language{
-    EN
-    KR
+enum Language {
+  EN
+  KR
 }
-enum TimeZone{
-    UTC
-    ECT
-    EET
-    ART
-    EAT
-    MET
-    NET
-    PLT
-    IST
-    BST
-    VST
-    CTT
-    JST
-    ACT
-    AET
-    SST
-    NST
-    MIT
-    HST
-    AST
-    PST
-    PNT
-    MST
-    CST
-    EST
-    IET
-    PRT
-    CNT
-    AGT
-    BET
-    CAT
+enum TimeZone {
+  UTC
+  ECT
+  EET
+  ART
+  EAT
+  MET
+  NET
+  PLT
+  IST
+  BST
+  VST
+  CTT
+  JST
+  ACT
+  AET
+  SST
+  NST
+  MIT
+  HST
+  AST
+  PST
+  PNT
+  MST
+  CST
+  EST
+  IET
+  PRT
+  CNT
+  AGT
+  BET
+  CAT
 }
-enum PaymentMethod{
-    CREDIT_CARD
-    PAYPAL
-    CASH
-    BANK_TRANSFER
+enum PaymentMethod {
+  CREDIT_CARD
+  PAYPAL
+  CASH
+  BANK_TRANSFER
 }
-enum Country{
-    ZW
-    ZM
-    ZA
-    YT
-    YE
-    WS
-    WF
-    VU
-    VN
-    VI
-    VG
-    VE
-    VC
-    VA
-    UZ
-    UY
-    US
-    UM
-    UG
-    UA
-    TZ
-    TW
-    TV
-    TT
-    TR
-    TO
-    TN
-    TM
-    TL
-    TK
-    TJ
-    TH
-    TG
-    TF
-    TD
-    TC
-    SZ
-    SY
-    SX
-    SV
-    ST
-    SS
-    SR
-    SO
-    SN
-    SM
-    SL
-    SK
-    SJ
-    SI
-    SH
-    SG
-    SE
-    SD
-    SC
-    SB
-    SA
-    RW
-    RU
-    RS
-    RO
-    RE
-    QA
-    PY
-    PW
-    PT
-    PS
-    PR
-    PN
-    PM
-    PL
-    PK
-    PH
-    PG
-    PF
-    PE
-    PA
-    OM
-    NZ
-    NU
-    NR
-    NP
-    NO
-    NL
-    NI
-    NG
-    NF
-    NE
-    NC
-    NA
-    MZ
-    MY
-    MX
-    MW
-    MV
-    MU
-    MT
-    MS
-    MR
-    MQ
-    MP
-    MO
-    MN
-    MM
-    ML
-    MK
-    MH
-    MG
-    MF
-    ME
-    MD
-    MC
-    MA
-    LY
-    LV
-    LU
-    LT
-    LS
-    LR
-    LK
-    LI
-    LC
-    LB
-    LA
-    KZ
-    KY
-    KW
-    KR
-    KP
-    KN
-    KM
-    KI
-    KH
-    KG
-    KE
-    JP
-    JO
-    JM
-    JE
-    IT
-    IS
-    IR
-    IQ
-    IO
-    IN
-    IM
-    IL
-    IE
-    ID
-    HU
-    HT
-    HR
-    HN
-    HM
-    HK
-    GY
-    GW
-    GU
-    GT
-    GS
-    GR
-    GQ
-    GP
-    GN
-    GM
-    GL
-    GI
-    GH
-    GG
-    GF
-    GE
-    GD
-    GB
-    GA
-    FR
-    FO
-    FM
-    FK
-    FJ
-    FI
-    ET
-    ES
-    ER
-    EH
-    EG
-    EE
-    EC
-    DZ
-    DO
-    DM
-    DK
-    DJ
-    DE
-    CZ
-    CY
-    CX
-    CW
-    CV
-    CU
-    CR
-    CO
-    CN
-    CM
-    CL
-    CK
-    CI
-    CH
-    CG
-    CF
-    CD
-    CC
-    CA
-    BZ
-    BY
-    BW
-    BV
-    BT
-    BS
-    BR
-    BQ
-    BO
-    BN
-    BM
-    BL
-    BJ
-    BI
-    BH
-    BG
-    BF
-    BE
-    BD
-    BB
-    BA
-    AZ
-    AX
-    AW
-    AU
-    AT
-    AS
-    AR
-    AQ
-    AO
-    AM
-    AL
-    AI
-    AG
-    AF
-    AE
-    AD
+enum Country {
+  ZW
+  ZM
+  ZA
+  YT
+  YE
+  WS
+  WF
+  VU
+  VN
+  VI
+  VG
+  VE
+  VC
+  VA
+  UZ
+  UY
+  US
+  UM
+  UG
+  UA
+  TZ
+  TW
+  TV
+  TT
+  TR
+  TO
+  TN
+  TM
+  TL
+  TK
+  TJ
+  TH
+  TG
+  TF
+  TD
+  TC
+  SZ
+  SY
+  SX
+  SV
+  ST
+  SS
+  SR
+  SO
+  SN
+  SM
+  SL
+  SK
+  SJ
+  SI
+  SH
+  SG
+  SE
+  SD
+  SC
+  SB
+  SA
+  RW
+  RU
+  RS
+  RO
+  RE
+  QA
+  PY
+  PW
+  PT
+  PS
+  PR
+  PN
+  PM
+  PL
+  PK
+  PH
+  PG
+  PF
+  PE
+  PA
+  OM
+  NZ
+  NU
+  NR
+  NP
+  NO
+  NL
+  NI
+  NG
+  NF
+  NE
+  NC
+  NA
+  MZ
+  MY
+  MX
+  MW
+  MV
+  MU
+  MT
+  MS
+  MR
+  MQ
+  MP
+  MO
+  MN
+  MM
+  ML
+  MK
+  MH
+  MG
+  MF
+  ME
+  MD
+  MC
+  MA
+  LY
+  LV
+  LU
+  LT
+  LS
+  LR
+  LK
+  LI
+  LC
+  LB
+  LA
+  KZ
+  KY
+  KW
+  KR
+  KP
+  KN
+  KM
+  KI
+  KH
+  KG
+  KE
+  JP
+  JO
+  JM
+  JE
+  IT
+  IS
+  IR
+  IQ
+  IO
+  IN
+  IM
+  IL
+  IE
+  ID
+  HU
+  HT
+  HR
+  HN
+  HM
+  HK
+  GY
+  GW
+  GU
+  GT
+  GS
+  GR
+  GQ
+  GP
+  GN
+  GM
+  GL
+  GI
+  GH
+  GG
+  GF
+  GE
+  GD
+  GB
+  GA
+  FR
+  FO
+  FM
+  FK
+  FJ
+  FI
+  ET
+  ES
+  ER
+  EH
+  EG
+  EE
+  EC
+  DZ
+  DO
+  DM
+  DK
+  DJ
+  DE
+  CZ
+  CY
+  CX
+  CW
+  CV
+  CU
+  CR
+  CO
+  CN
+  CM
+  CL
+  CK
+  CI
+  CH
+  CG
+  CF
+  CD
+  CC
+  CA
+  BZ
+  BY
+  BW
+  BV
+  BT
+  BS
+  BR
+  BQ
+  BO
+  BN
+  BM
+  BL
+  BJ
+  BI
+  BH
+  BG
+  BF
+  BE
+  BD
+  BB
+  BA
+  AZ
+  AX
+  AW
+  AU
+  AT
+  AS
+  AR
+  AQ
+  AO
+  AM
+  AL
+  AI
+  AG
+  AF
+  AE
+  AD
 }
-enum Currency{
-    USD
-    EUR
-    JPY
-    AUD
-    CHF
-    KRW
-    GBP
-    NZD
-    VND
-    HKD
+enum Currency {
+  USD
+  EUR
+  GBP
 }
-enum Condition{
-    VG_PLUS
-    NM
-    M
-    VG
-    G_PLUS
-    G
-    FAIR
-    POOR
+enum Condition {
+  VG_PLUS
+  NM
+  M
+  VG
+  G_PLUS
+  G
+  FAIR
+  POOR
 }
-enum Format{
-    VINYL
-    ACETATE
-    FLEXIDISC
-    CD
-    DVD
-    BLURAY
-    SACD
+enum Format {
+  VINYL
+  ACETATE
+  FLEXIDISC
+  CD
+  DVD
+  BLURAY
+  SACD
 }
-enum Genre{
-    ELECTRONIC
-    REGGAE
-    NONMUSIC
-    CHILDRENS
-    HIPHOP
-    LATIN
-    POP
-    FOLK
-    JAZZ
-    FUNK
-    CLASSICAL
-    STAGE
-    ROCK
-    BLUES
-    BRASS
+enum Genre {
+  ELECTRONIC
+  REGGAE
+  NONMUSIC
+  CHILDRENS
+  HIPHOP
+  LATIN
+  POP
+  FOLK
+  JAZZ
+  FUNK
+  CLASSICAL
+  STAGE
+  ROCK
+  BLUES
+  BRASS
 }
-enum OrderStatus{
-    NEW_ORDER
-    INVOICE_SENT
-    PAYEMNT_RECIEVED
-    SHIPPED
-    CANCELED
+enum OrderStatus {
+  NEW_ORDER
+  INVOICE_SENT
+  PAYMENT_RECEIVED
+  SHIPPED
+  CANCELED
 }
-enum FilterCategory{
-    CURRENCY
-    GENRE
-    STYLE
-    FORMAT
-    MEDIA_CONDITIOIN
-    SLEEVE_CONDITION
-    YEAR
+enum FilterCategory {
+  CURRENCY
+  GENRE
+  STYLE
+  FORMAT
+  MEDIA_CONDITIOIN
+  SLEEVE_CONDITION
+  YEAR
+  COUNTRY
 }
-enum MessageKind{
-    ORDER,
-    CUSTOM
+enum MessageKind {
+  ORDER
+  CUSTOM
 }
 
 scalar DateTime
-scalar Duration
 
 union SearchObject = Artist | Item | Master
 
-input FilterInput{
-    currency: Currency
-    costLower: Float
-    costUpper: Float
-    genre: [Genre!]
-    format: [Format!]
-    mediaCondition: Condition
-    sleeveCondition: Condition
-    year: Int
+input FilterInput {
+  currency: Currency
+  costLower: Float
+  costUpper: Float
+  genre: [Genre]
+  format: [Format]
+  mediaCondition: [Condition]
+  sleeveCondition: [Condition]
+  year: [Int]
+  country: Country
 }
-input AdvancedSearchInput{
-    artist: String
-    title: String
-    label: String
-    year: Int
-    format: Format
+input AdvancedSearchInput {
+  artist: String
+  title: String
+  label: String
+  year: Int
+  format: Format
 }
 
 type Query {
-    user(id: ID!, isToken: Boolean): User!
-    search(term: String!, filter: FilterInput, sort: String, startIndex: Int, endIndex: Int): SearchResult!
-    advancedSearch(term: AdvancedSearchInput, amount: Int): SearchResult!
-    item(id: ID!): Item!
-    order(id: ID!, token: String): Order!
-    release(id: ID!): Release!
-    artist(id: ID!): Artist!
-    master(id: ID!): Master!
+  user(id: ID!, isToken: Boolean): User!
+  search(
+    term: String!
+    searchType: [String!]
+    filter: FilterInput
+    sort: String
+    startIndex: Int
+    endIndex: Int
+  ): SearchResult!
+  advancedSearch(term: AdvancedSearchInput, amount: Int): SearchResult!
+  item(id: ID!): Item!
+  order(id: ID!, token: ID!): Order!
+  release(id: ID!): Release!
+  artist(id: ID!): Artist!
+  master(id: ID!): Master!
 }
 
-type FormatSpec{
-    kind: String!
-    value: String!
+type FormatSpec {
+  kind: String!
+  value: String!
 }
 
-type Cost{
-    currency: Currency!
-    value: Float!
+type Cost {
+  currency: Currency!
+  value: Float!
 }
 
-type Date{
-    year: Int!
-    month: Int!
-    day: Int!
+type Date {
+  year: Int!
+  month: Int!
+  day: Int!
 }
 
-type Filter{
-    category: FilterCategory!
-    name: String!
-    amount: Int!
+type Filter {
+  category: FilterCategory!
+  name: String!
+  amount: Int!
 }
 
-type User{
-    id: ID!
-    userName: String!
-    realName: String
-    image: String
-    cart: Cart
-    messages: [Message]
-    adminPermission: Boolean!
-    sellerPermission: Boolean!
-    contributerPermission: Boolean!
-    emailAddress: String!
-    language: Language
-    timeZone: TimeZone
-    profile: String
-    location: String
-    homePage: String
-    sellerSettings: SellerInfo
-    buyerSettings: BuyerInfo
+type User {
+  id: ID!
+  userName: String!
+  realName: String
+  image: String
+  cart: Cart
+  messages: [Message]
+  adminPermission: Boolean!
+  sellerPermission: Boolean!
+  contributerPermission: Boolean!
+  emailAddress: String!
+  language: Language
+  timeZone: TimeZone
+  profile: String
+  location: String
+  homePage: String
+  sellerSettings: SellerInfo
+  buyerSettings: BuyerInfo
 }
 
-type SellerInfo{
-    paymentMethods: [PaymentMethod!]!
-    country: Country!
-    sellerTerm: String!
+type SellerInfo {
+  paymentMethods: [PaymentMethod!]!
+  country: Country!
+  sellerTerm: String!
 }
 
-type Address{
-    fullName: String!
-    address1: String!
-    address2: String
-    city: String!
-    region: String!
-    country: Country!
+type Address {
+  fullName: String!
+  address1: String!
+  address2: String
+  city: String!
+  region: String!
+  country: Country!
 }
 
-type BuyerInfo{
-    currency: Currency!
-    address: Address!
+type BuyerInfo {
+  currency: Currency!
+  address: Address!
 }
 
-type Cart{
-#    itemCount: Int!
-#    sellerCount: Int!
-    orders: [Order!]!
+type Cart {
+  #    itemCount: Int!
+  #    sellerCount: Int!
+  orders: [Order!]!
 }
 
-type Order{
-    id: ID!
-    dateTimeCreated: DateTime!
-    dataTimeModified: DateTime!
-    items: [Item!]!
-    seller: User!
-    buyer: User!
-    subTotoal: Cost!
-    total: Cost!
-    shipping: Cost!
-    timeline: [Message!]!
-    status: OrderStatus!
+type Order {
+  id: ID!
+  dateTimeCreated: DateTime!
+  dateTimeModified: DateTime!
+  items: [Item!]!
+  seller: User!
+  buyer: User!
+  subTotal: Cost!
+  total: Cost!
+  shipping: Cost!
+  timeline: [OrderTimeline!]!
+  status: OrderStatus!
 }
 
-type Item{
-    id: ID
-    image: [String!]!
-    release: Release!
-    price: Cost!
-    shipping: Cost
-    mediaCondition: Condition!
-    sleeveCondition: Condition!
-    seller: User!
-    notes: String
+type OrderTimeline {
+  sender: User!
+  timestamp: DateTime!
+  isCustom: Boolean!
+  content: String
 }
 
-type Release{
-    id: ID!
-    image: [String!]!
-    artist: [Artist!]!
-    title: String!
-    format: Format!
-    formatSpec: [FormatSpec!]
-    country: Country
-    year: Int
-    genres: [Genre!]
-    trackList(order: String): [Track!]!
-    notes: String
-    submissionNotes: String
-    releaseDate: Date
-    master: Master
+type Item {
+  id: ID
+  image: [String!]!
+  release: Release!
+  price: Cost!
+  shipping: Cost
+  mediaCondition: Condition!
+  sleeveCondition: Condition!
+  seller: User!
+  notes: String
+  comments: String
 }
 
-type Track{
-    pos: String
-    artist: [Artist!]
-    title: String!
-    duration: Duration
+type Release {
+  id: ID!
+  image: [String!]!
+  artist: [Artist!]!
+  title: String!
+  format: Format!
+  formatSpec: [FormatSpec!]!
+  country: Country
+  year: Int
+  genre: [Genre!]
+  trackList(order: String): [Track!]!
+  notes: String
+  submissionNotes: String
+  releaseDate: Date
+  master: Master
 }
 
-type Artist{
-    id: ID!
-    name: String!
-    image: [String!]!
-    alias: [String!]
-    member: [String!]
-    profile: String
-    homePage: [String!]
-    submissionNotes: String
-    master(sort: String): [Master!]
+type Track {
+  pos: String
+  artist: [Artist!]
+  title: String!
+  duration: DateTime
 }
 
-type Master{
-    id: ID!
-    title: String!
-    artist: [Artist!]!
-    image: [String!]!
-    genre: [Genre!]
-    year: Int
-    notes: String
-    submissionNotes: String
-    keyRelease: Release!
-    release(sort: String): [Release]!
+type Artist {
+  id: ID!
+  name: String!
+  image: [String!]!
+  alias: [String!]
+  member: [String!]
+  profile: String
+  homePage: [String!]
+  submissionNotes: String
+  master(sort: String): [Master!]
 }
 
-type Message{
-    id: ID!
-    owner: User!
-    sender: User!
-    reciever: User!
-    timestamp: DateTime!
-    kind: MessageKind!
-    order: Order
-    orderStatus: OrderStatus
-    content: String
+type Master {
+  id: ID!
+  title: String!
+  artist: [Artist!]!
+  image: [String!]!
+  genre: [Genre!]
+  year: Int
+  notes: String
+  submissionNotes: String
+  keyRelease: Release!
+  release(sort: String): [Release]!
 }
 
-type SearchResult{
-    totalResults: Int!
-    result: [SearchObject!]!
-    filter: [Filter!]!
+type Message {
+  id: ID!
+  owner: User!
+  sender: User!
+  reciever: User!
+  timestamp: DateTime!
+  content: String
+}
+
+type SearchResult {
+  totalResults: Int!
+  result: [SearchObject!]!
+  filters: [Filter!]!
 }

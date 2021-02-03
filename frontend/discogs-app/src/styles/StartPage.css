@@ -2,8 +2,10 @@
     margin-top: 0;
     background: #000;
     min-height: 380px;
-    height: auto;
+    height: 100%;
+    width: 100%;
     display: block;
+    position: absolute;
 }
 
 .StartPage .MainImage {

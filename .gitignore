@@ -1,0 +1,10 @@
+/api/discogs-api/node_modules
+/api/discogs-api/.idea
+/api/discogs-api/package-lock.json
+/api/discogs-api/mock_db.mjs
+
+/frontend/discogs-app/node_modules
+/frontend/discogs-app/.idea
+/frontend/discogs-app/.eslintcache
+/frontend/discogs-app/yarn.lock
+/frontend/discogs-app/package-lock.json

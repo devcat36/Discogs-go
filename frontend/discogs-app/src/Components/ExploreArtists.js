@@ -91,7 +91,7 @@ function ExploreArtists() {
             </div>
           </Grid.Column>
           <Grid.Column width={13}>
-            <ExploreTab activeItem="Artist" />
+            <ExploreTab activeItem="Artist" searchTerm={queryParam.term} query={queryString.query} />
             <PaginationTop
               amountOptions={amountOptions}
               sortOptions={sortOptions}

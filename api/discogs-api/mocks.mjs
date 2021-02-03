@@ -81,18 +81,22 @@ export const mocks = {
   },
   Item: () => ({
     notes: casual.sentences(5),
-    image: casual.random_element([['https://picsum.photos/300'],[]])
+    image: casual.random_element([['https://picsum.photos/300'],[]]),
+    comments: casual.sentence
   }),
   Release: () => ({
     image: ['https://picsum.photos/300', 'https://picsum.photos/300'],
     title: casual.title,
-    artist: MockList_WA([1,2]),
+    artist: MockList_WA(1),
+    trackList: MockList_WA(5),
     year: casual.year,
     notes: casual.sentences(3),
     submissoinNotes: casual.sentences(2),
   }),
   Track: () => ({
     name: casual.title,
+    pos: casual.integer(1,10).toString(),
+    title: casual.title,
     artist: MockList_WA([0,2]),
     alias: casual.array_of_words(2),
     member: [casual.name, casual.name],
@@ -116,7 +120,7 @@ export const mocks = {
     filter: MockList_WA([5, 15])
   }),
   Artist: () => ({
-    name: casual.word,
+    name: casual.title,
     image: ['https://picsum.photos/300'],
     alias: [casual.name, casual.name],
     member: [casual.name, casual.name, casual.name],
@@ -131,5 +135,16 @@ export const mocks = {
     }else{
       return {kind: kind, content: casual.sentence, order: null, orderStatus: null}
     }
+  },
+  OrderTimeline: ()=>{
+    let isCustom=casual.coin_flip;
+    if(isCustom) return {isCustom, content: casual.sentence}
+    else return {isCustom, content: casual.random_element([
+          'NEW_ORDER',
+          'INVOICE_SENT',
+          'PAYMENT_RECEIVED',
+          'SHIPPED',
+          'CANCELED',
+      ])}
   }
 }

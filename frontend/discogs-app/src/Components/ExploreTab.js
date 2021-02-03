@@ -2,12 +2,12 @@ import React, { useCallback } from "react";
 import { Header, Input, Menu } from "semantic-ui-react";
 import { useHistory, Link } from "react-router-dom";
 
-function ExploreTab({ activeItem, searchTerm }) {
+function ExploreTab({ activeItem, searchTerm, query }) {
   const history = useHistory();
   const handleItemClick = useCallback(
     (e, { name }) => {
-      if (name === "Master") history.push("/explore/master");
-      else if (name === "Artist") history.push("/explore/artist");
+      if (name === "Master") history.push(`/explore/search/master/${query}`);
+      else if (name === "Artist") history.push(`/explore/search/artist/${query}`);
     },
     [history]
   );

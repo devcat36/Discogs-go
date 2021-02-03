@@ -1,11 +1,11 @@
-import pkg from 'graphql';
+import pkg from "graphql";
 
-const {GraphQLScalarType, Kind} = pkg;
+const { GraphQLScalarType, Kind } = pkg;
 
 const resolvers = {
   DateTime: new GraphQLScalarType({
-    name: 'DateTime',
-    description: 'DateTime',
+    name: "DateTime",
+    description: "DateTime",
     parseValue(value) {
       return new Date(value);
     },
@@ -111,5 +111,5 @@ const resolvers = {
   //   release: () => {
   //   }
   // }
-}
+};
 export default resolvers;

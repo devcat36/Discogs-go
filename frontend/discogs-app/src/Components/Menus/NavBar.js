@@ -20,8 +20,8 @@ function NavBar() {
   const history = useHistory();
   const handleItemClick = useCallback((e, {name}) => {
     if (name === 'Home') history.push('/');
-    else if (name === 'Explore') history.push('/explore/search/master');
-    else if (name === 'Buy Music') history.push('/marketplace/listings/');
+    else if (name === 'Explore') history.push('/explore/search/master/term=*&show_count=25&sort=Latest+Additions&page=1');
+    else if (name === 'Buy Music') history.push('/marketplace/listings/term=*&page=1&show_count=25&sort=Listed+Newest');
     else if (name === 'cart') history.push('/marketplace/cart');
     else if (name === 'Sell Music') history.push('/marketplace/sell/list')
   }, [history]);

@@ -4,6 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 import OrderContainer from "./OrderContainer";
 import MarketplaceTab from "./MarketplaceTab";
 import CartItem from "./CartItem";
+import {useQuery, gql} from '@apollo/client';
 
 const dummyCI = [(
   <CartItem

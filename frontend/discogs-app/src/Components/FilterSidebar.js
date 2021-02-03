@@ -13,15 +13,18 @@ function FilterSidebar({
   const [expandedGroup, setExpandedGroup] = useState("");
   return (
     <>
-      <SelectedFilterGroup
-        filters={selectedFilters}
-        onFilterClick={onFilterRemove}
-      />
+      {selectedFilters && selectedFilters.length > 0 && (
+        <SelectedFilterGroup
+          filters={selectedFilters}
+          onFilterClick={onFilterRemove}
+        />
+      )}
       <Menu vertical fluid>
         {categories.map(
           (category) =>
             (expandedGroup === "" || expandedGroup === category.name) &&
-            (filters.find(filter => filter.category === category.name) !== undefined) &&
+            filters.find((filter) => filter.category === category.name) !==
+              undefined &&
             !(
               category.multi &&
               selectedFilters.some(

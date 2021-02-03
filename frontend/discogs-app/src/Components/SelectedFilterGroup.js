@@ -3,7 +3,6 @@ import { Header, Menu } from "semantic-ui-react";
 import SelectedFilterElement from "./SelectedFilterElement";
 
 function SelectedFilterGroup({ filters, onFilterClick }) {
-  console.log(filters);
   return (
     <Menu vertical fluid>
       <Menu.Item active>

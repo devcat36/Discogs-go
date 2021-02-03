@@ -200,7 +200,7 @@ function ExploreMasters() {
             </div>
           </Grid.Column>
           <Grid.Column width={13}>
-            <ExploreTab activeItem="Master" searchTerm={queryParam.term}/>
+            <ExploreTab activeItem="Master"  searchTerm={queryParam.term} query={queryString.query} />
             <PaginationTop
               amountOptions={amountOptions}
               sortOptions={sortOptions}
