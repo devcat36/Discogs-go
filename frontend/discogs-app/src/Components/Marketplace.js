@@ -103,7 +103,7 @@ function Marketplace() {
     endIndex: queryParam.page * queryParam.show_count,
     sort: queryParam.sort,
   };
-  const { data } = useQuery(SEARCH, { variables: variables });
+  const { data } = useQuery(SEARCH, { variables });
   if (!data) return null;
 
   let selectedFilters = [

@@ -531,7 +531,7 @@ type Artist {
   profile: String
   homePage: [String!]
   submissionNotes: String
-  master(sort: String): [Master!]
+  master(sort: String, startIndex: Int, endIndex: Int): [Master!]
 }
 
 type Master {

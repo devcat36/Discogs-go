@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Button,
   Divider,
   Grid,
   Header,
   Item,
-  Tab,
+  Menu,
   Table,
+  Icon,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
+import { useLazyQuery, gql } from "@apollo/client";
 import PaginationTop from "./PaginationTop";
 import MasterDescription from "./MasterDescription";
+import PaginationFooter from "./PaginationFooter";
 
 const amountOptions = [
   { key: "5", text: "5", value: "5" },
@@ -31,7 +33,12 @@ const sortOptions = [
 ];
 
 const ARTIST_QUERY = gql`
-  query ArtistDescription($id: ID!) {
+  query ArtistDescription(
+    $id: ID!
+    $sortOrder: String
+    $startIndex: Int
+    $endIndex: Int
+  ) {
     artist(id: $id) {
       id
       name
@@ -41,7 +48,7 @@ const ARTIST_QUERY = gql`
       profile
       homePage
       submissionNotes
-      master {
+      master(sort: $sortOrder, startIndex: $startIndex, endIndex: $endIndex) {
         id
         title
         year
@@ -56,9 +63,18 @@ function ArtistDescription() {
   const [sortOrder, setSortOrder] = useState("Year A-Z");
   const [page, setPage] = useState(1);
   const { id } = useParams();
-  const { data } = useQuery(ARTIST_QUERY, { variables: { id: id } });
+  const [getData, { data }] = useLazyQuery(ARTIST_QUERY);
+  useEffect(() => {
+    getData({
+      variables: {
+        id,
+        sortOrder,
+        startIndex: (page - 1) * Number(listingAmount),
+        endIndex: page * Number(listingAmount),
+      },
+    });
+  }, [id, sortOrder, page, listingAmount, getData]);
   if (!data) return null;
-
   return (
     <div className={"ItemDescription contained"}>
       <Grid divided>
@@ -113,10 +129,15 @@ function ArtistDescription() {
         sortOptions={sortOptions}
         listingAmount={listingAmount}
         sortOrder={sortOrder}
-        onSortOrderChanged={() => {}}
-        onListingAmountChanged={() => {}}
+        onSortOrderChanged={(order) => {
+          console.log("setstate called");
+          setSortOrder(order.value);
+        }}
+        onListingAmountChanged={(amount) => {
+          setListingAmount(amount.value);
+        }}
         startIndex={(page - 1) * listingAmount + 1}
-        endIndex={page * listingAmount}
+        endIndex={(page - 1) * listingAmount + data.artist.master.length}
         total={data.artist.master.length}
       />
       <Table basic={"very"} unstackable>
@@ -142,6 +163,13 @@ function ArtistDescription() {
             </Table.Row>
           ))}
         </Table.Body>
+        <PaginationFooter
+          onPageSelected={(page) => setPage(page)}
+          page={page}
+          itemLength={data.artist.master.length}
+          listingAmount={Number(listingAmount)}
+          maxLength={6}
+        />
       </Table>
     </div>
   );

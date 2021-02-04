@@ -63,9 +63,7 @@ function PaginationTop({
                   let amount = amountOptions.find(
                     (item) => item.key === data.value
                   );
-                  // setListingAmount(amount);
-                  if (typeof onListingAmountChange == "function")
-                    onListingAmountChanged(amount);
+                  onListingAmountChanged && onListingAmountChanged(amount);
                 }}
               />
             </>
