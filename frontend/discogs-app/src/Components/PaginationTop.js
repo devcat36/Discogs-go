@@ -56,12 +56,11 @@ function PaginationTop({
                 compact
                 selection
                 options={amountOptions}
-                // selectedLabel={listingAmount}
                 value={listingAmount}
                 style={{ margin: "0 0 0 1rem" }}
                 onChange={(e, data) => {
                   let amount = amountOptions.find(
-                    (item) => item.key === data.value
+                    (item) => item.key == data.value
                   );
                   onListingAmountChanged && onListingAmountChanged(amount);
                 }}

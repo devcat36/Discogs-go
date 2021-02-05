@@ -20,12 +20,13 @@ function FilterGroup({
       </Menu.Item>
       {custom && (
         <FilterCustomRangeElement
-          onFilterClick={(range) => onFilterClick({ ...range, category })}
+          onFilterClick={(range) => onFilterClick({ value: range.toString(), category })}
         />
       )}
       {filters.slice(0, expanded ? maxElements : filters.length).map((filter) => {
         return (
           <FilterElement
+            key={filter.text}
             value={filter.value}
             text={filter.text}
             count={filter.count}

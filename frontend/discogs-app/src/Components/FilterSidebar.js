@@ -32,6 +32,7 @@ function FilterSidebar({
               )
             ) && (
               <FilterGroup
+                key={category.name}
                 filters={filters.filter(
                   (filter) => filter.category === category.name
                 )}

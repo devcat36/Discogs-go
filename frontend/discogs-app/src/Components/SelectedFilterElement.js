@@ -3,7 +3,7 @@ import { Menu, Icon } from "semantic-ui-react";
 
 function FilterSelectedElement({ category, text, onFilterClick }) {
   return (
-    <Menu.Item onClick={() => onFilterClick({ category })}>
+    <Menu.Item onClick={onFilterClick}>
       {category}:&nbsp;&nbsp;
       {text}
       <Icon name={"x"} />

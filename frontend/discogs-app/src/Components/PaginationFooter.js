@@ -20,6 +20,7 @@ function PaginationFooter({
             </Menu.Item>
             {[...Array(Math.min(maxLength, lastPage))].map((e, index) => (
               <Menu.Item
+                key={index}
                 as="a"
                 onClick={() => onPageSelected(Math.max(page - 2, 1) + index)}
               >

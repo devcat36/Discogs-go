@@ -10,7 +10,7 @@ function SelectedFilterGroup({ filters, onFilterClick }) {
       </Menu.Item>
       {filters.map((filter) => (
         <SelectedFilterElement
-          onFilterClick={onFilterClick}
+          onFilterClick={()=>onFilterClick(filter)}
           category={filter.category}
           text={filter.text}
         />

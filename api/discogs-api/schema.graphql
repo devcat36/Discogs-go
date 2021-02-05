@@ -361,8 +361,7 @@ union SearchObject = Artist | Item | Master
 
 input FilterInput {
   currency: Currency
-  costLower: Float
-  costUpper: Float
+  price: String
   genre: [Genre]
   format: [Format]
   mediaCondition: [Condition]
