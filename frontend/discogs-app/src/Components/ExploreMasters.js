@@ -1,12 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { Divider, Grid, Icon, Menu, Table } from "semantic-ui-react";
 import FilterSidebar from "./FilterSidebar";
 import ExploreTab from "./ExploreTab";
 import PaginationTop from "./PaginationTop";
 import ExploreItem from "./ExploreItem";
+import PaginationMenu from "./PaginationMenu"
 import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import qs from "query-string";
 import {
   CONDITION_OPTIONS,
@@ -79,6 +80,7 @@ const SEARCH = gql`
 const arrayify = (param) => (Array.isArray(param) ? param : [param]);
 
 function ExploreMasters() {
+  const history = useHistory();
   const queryString = useParams();
   const queryParam = qs.parse(queryString.query);
   const filters = {
@@ -96,46 +98,31 @@ function ExploreMasters() {
     sort: queryParam.sort,
   };
   const { data } = useQuery(SEARCH, { variables: variables });
+  const [page, setPage] = useState(1);
   if (!data) return null;
 
   let selectedFilters = [
     queryParam.currency && {
       category: "Currency",
+      value: filters.currency,
       text: filters.currency,
-    },
-    queryParam.cost_upper && {
-      category: "Price Range",
-      text: `${CURRENCY_SYMBOL[filters.currency]}${filters.costLower} to ${
-        CURRENCY_SYMBOL[filters.currency]
-      }${filters.costUpper}`,
     },
     queryParam.genre &&
       filters.genre.map((genre) => ({
         category: "Genre",
+        value: GENRE_OPTIONS.find((option) => option.value === genre).value,
         text: GENRE_OPTIONS.find((option) => option.value === genre).text,
       })),
     queryParam.format &&
       filters.format.map((format) => ({
         category: "Format",
+        value: FORMAT_OPTIONS.find((option) => option.value === format).value,
         text: FORMAT_OPTIONS.find((option) => option.value === format).text,
-      })),
-    queryParam.media_condition &&
-      filters.mediaCondition.map((mediaCondition) => ({
-        category: "Media Condition",
-        text: CONDITION_OPTIONS.find(
-          (option) => option.value === mediaCondition
-        ).text,
-      })),
-    queryParam.sleeve_condition &&
-      filters.sleeveCondition.map((sleeveCondition) => ({
-        category: "Sleeve Condition",
-        text: CONDITION_OPTIONS.find(
-          (option) => option.value === sleeveCondition
-        ).text,
       })),
     queryParam.year &&
       filters.year.map((year) => ({
         category: "Year",
+        value: year,
         text: year,
       })),
   ]
@@ -149,23 +136,6 @@ function ExploreMasters() {
     count: filter.amount,
     custom: filter.custom,
   }));
-  const categories = [
-    {
-      name: "GENRE",
-      multi: true,
-      custom: false,
-    },
-    {
-      name: "FORMAT",
-      multi: true,
-      custom: false,
-    },
-    {
-      name: "YEAR",
-      multi: true,
-      custom: false,
-    },
-  ];
 
   const items = data.search.result
     .filter((result) => result.__typename === "Master")
@@ -187,11 +157,31 @@ function ExploreMasters() {
         <Grid>
           <Grid.Column width={3}>
             <FilterSidebar
-              categories={categories}
+              categories={[
+                ...new Set(data.search.filters.map((filter) => filter.category)),
+              ].map((category) => ({ name: category }))}
               filters={availableFilters}
               selectedFilters={selectedFilters}
-              onFilterAdd={() => {}}
-              onFilterRemove={() => {}}
+              onFilterAdd={(filter) => {
+                history.push(
+                  qs.stringify({
+                    ...queryParam,
+                    [filter.category.toLowerCase().replace(" ", "_")]: arrayify(
+                      queryParam[filter.category.toLowerCase().replace(" ", "_")]
+                    ).concat(filter.value),
+                  })
+                );
+              }}
+              onFilterRemove={(filter) => {
+                history.push(
+                  qs.stringify({
+                    ...queryParam,
+                    [filter.category.toLowerCase()]: arrayify(
+                      queryParam[filter.category.toLowerCase()]
+                    ).filter((selectedFilter) => selectedFilter != filter.value),
+                  })
+                );
+              }}
             />
             <div style={{ marginLeft: "5px" }}>
               <Link>
@@ -205,26 +195,31 @@ function ExploreMasters() {
               amountOptions={amountOptions}
               sortOptions={sortOptions}
               listingAmount={queryParam.show_count}
-              startIndex={variables.startIndex}
-              endIndex={variables.endIndex}
+              startIndex={data.search.result.filter((result) => result.__typename === "Master").length ? variables.startIndex + 1 : 0}
+              endIndex={variables.startIndex + data.search.result.filter((result) => result.__typename === "Master").length}
               total={data.search.totalResults}
               sortOrder={queryParam.sort}
+              onSortOrderChanged={(order) => {
+                history.push(
+                  qs.stringify({ ...queryParam, sort: order.value })
+                );
+              }}
+              onListingAmountChanged={(count) => {
+                history.push(
+                  qs.stringify({ ...queryParam, show_count: count.value })
+                );
+              }}
             />
             <Divider />
             <div className="ItemContainer">{items}</div>
             <Divider />
-            <Menu floated="right" pagination>
-              <Menu.Item as="a" icon>
-                <Icon name="chevron left" />
-              </Menu.Item>
-              <Menu.Item as="a">1</Menu.Item>
-              <Menu.Item as="a">2</Menu.Item>
-              <Menu.Item as="a">3</Menu.Item>
-              <Menu.Item as="a">4</Menu.Item>
-              <Menu.Item as="a" icon>
-                <Icon name="chevron right" />
-              </Menu.Item>
-            </Menu>
+            <PaginationMenu
+                onPageSelected={page=>setPage(page)}
+                page={page}
+                itemLength={data.search.totalResults}
+                listingAmount={queryParam.show_count}
+                maxLength={6}
+              />
           </Grid.Column>
         </Grid>
       </div>

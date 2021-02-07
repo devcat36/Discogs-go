@@ -11,6 +11,7 @@ function FilterSidebar({
   onFilterRemove,
 }) {
   const [expandedGroup, setExpandedGroup] = useState("");
+  if(!filters && ! selectedFilters) return null;
   return (
     <>
       {selectedFilters && selectedFilters.length > 0 && (

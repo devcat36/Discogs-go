@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 import { useLazyQuery, gql } from "@apollo/client";
 import PaginationTop from "./PaginationTop";
 import MasterDescription from "./MasterDescription";
-import PaginationFooter from "./PaginationFooter";
+import PaginationMenu from "./PaginationMenu";
 
 const amountOptions = [
   { key: "5", text: "5", value: "5" },
@@ -163,13 +163,19 @@ function ArtistDescription() {
             </Table.Row>
           ))}
         </Table.Body>
-        <PaginationFooter
-          onPageSelected={(page) => setPage(page)}
-          page={page}
-          itemLength={data.artist.master.length}
-          listingAmount={Number(listingAmount)}
-          maxLength={6}
-        />
+        <Table.Footer>
+          <Table.Row>
+            <Table.HeaderCell colSpan={4}>
+              <PaginationMenu
+                onPageSelected={(page) => setPage(page)}
+                page={page}
+                itemLength={data.artist.master.length}
+                listingAmount={Number(listingAmount)}
+                maxLength={6}
+              />
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Footer>
       </Table>
     </div>
   );

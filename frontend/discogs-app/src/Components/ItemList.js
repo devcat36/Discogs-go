@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "semantic-ui-react";
 import { CONDITION_OPTIONS, COUNTRY_OPTIONS } from "../constants";
 import ItemListElement from "./ItemListElement";
-import PaginationFooter from "./PaginationFooter";
+import PaginationMenu from "./PaginationMenu";
 import PaginationTop from "./PaginationTop";
 
 const amountOptions = [
@@ -111,14 +111,19 @@ function ItemList({
             />
           ))}
         </Table.Body>
-
-        <PaginationFooter
-          onPageSelected={onPageSelected}
-          page={page}
-          itemLength={total}
-          listingAmount={showCount}
-          maxLength={6}
-        />
+        <Table.Footer>
+          <Table.Row>
+            <Table.HeaderCell colSpan={4}>
+              <PaginationMenu
+                onPageSelected={onPageSelected}
+                page={page}
+                itemLength={total}
+                listingAmount={showCount}
+                maxLength={6}
+              />
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Footer>
       </Table>
     </>
   );
