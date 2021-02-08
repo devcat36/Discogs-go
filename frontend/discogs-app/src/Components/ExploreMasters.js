@@ -1,17 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import { Divider, Grid, Icon, Menu, Table } from "semantic-ui-react";
 import FilterSidebar from "./FilterSidebar";
 import ExploreTab from "./ExploreTab";
 import PaginationTop from "./PaginationTop";
 import ExploreItem from "./ExploreItem";
-import PaginationMenu from "./PaginationMenu"
+import PaginationMenu from "./PaginationMenu";
 import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { useParams, useHistory } from "react-router-dom";
 import qs from "query-string";
 import {
-  CONDITION_OPTIONS,
-  CURRENCY_SYMBOL,
   FORMAT_OPTIONS,
   GENRE_OPTIONS,
 } from "../constants";
@@ -98,7 +96,6 @@ function ExploreMasters() {
     sort: queryParam.sort,
   };
   const { data } = useQuery(SEARCH, { variables: variables });
-  const [page, setPage] = useState(1);
   if (!data) return null;
 
   let selectedFilters = [
@@ -141,11 +138,12 @@ function ExploreMasters() {
     .filter((result) => result.__typename === "Master")
     .map((master) => (
       <ExploreItem
+        key={master.id}
         item={{
           imgsrc: master.image[0],
           title: master.title,
           artist: master.artist[0].name,
-          id: master.id
+          id: master.id,
         }}
         type="master"
       />
@@ -158,7 +156,9 @@ function ExploreMasters() {
           <Grid.Column width={3}>
             <FilterSidebar
               categories={[
-                ...new Set(data.search.filters.map((filter) => filter.category)),
+                ...new Set(
+                  data.search.filters.map((filter) => filter.category)
+                ),
               ].map((category) => ({ name: category }))}
               filters={availableFilters}
               selectedFilters={selectedFilters}
@@ -167,7 +167,9 @@ function ExploreMasters() {
                   qs.stringify({
                     ...queryParam,
                     [filter.category.toLowerCase().replace(" ", "_")]: arrayify(
-                      queryParam[filter.category.toLowerCase().replace(" ", "_")]
+                      queryParam[
+                        filter.category.toLowerCase().replace(" ", "_")
+                      ]
                     ).concat(filter.value),
                   })
                 );
@@ -178,25 +180,42 @@ function ExploreMasters() {
                     ...queryParam,
                     [filter.category.toLowerCase()]: arrayify(
                       queryParam[filter.category.toLowerCase()]
-                    ).filter((selectedFilter) => selectedFilter != filter.value),
+                    ).filter(
+                      (selectedFilter) => selectedFilter != filter.value
+                    ),
                   })
                 );
               }}
             />
             <div style={{ marginLeft: "5px" }}>
-              <Link>
+              <Link to="#">
                 <Icon name="question circle" /> Help on Searching
               </Link>
             </div>
           </Grid.Column>
           <Grid.Column width={13}>
-            <ExploreTab activeItem="Master"  searchTerm={queryParam.term} query={queryString.query} />
+            <ExploreTab
+              activeItem="Master"
+              searchTerm={queryParam.term}
+              query={queryString.query}
+            />
             <PaginationTop
               amountOptions={amountOptions}
               sortOptions={sortOptions}
               listingAmount={queryParam.show_count}
-              startIndex={data.search.result.filter((result) => result.__typename === "Master").length ? variables.startIndex + 1 : 0}
-              endIndex={variables.startIndex + data.search.result.filter((result) => result.__typename === "Master").length}
+              startIndex={
+                data.search.result.filter(
+                  (result) => result.__typename === "Master"
+                ).length
+                  ? variables.startIndex + 1
+                  : 0
+              }
+              endIndex={
+                variables.startIndex +
+                data.search.result.filter(
+                  (result) => result.__typename === "Master"
+                ).length
+              }
               total={data.search.totalResults}
               sortOrder={queryParam.sort}
               onSortOrderChanged={(order) => {
@@ -214,12 +233,14 @@ function ExploreMasters() {
             <div className="ItemContainer">{items}</div>
             <Divider />
             <PaginationMenu
-                onPageSelected={page=>setPage(page)}
-                page={page}
-                itemLength={data.search.totalResults}
-                listingAmount={queryParam.show_count}
-                maxLength={6}
-              />
+              onPageSelected={(page) =>
+                history.push(qs.stringify({ ...queryParam, page }))
+              }
+              page={queryParam.page}
+              itemLength={data.search.totalResults}
+              listingAmount={queryParam.show_count}
+              maxLength={6}
+            />
           </Grid.Column>
         </Grid>
       </div>

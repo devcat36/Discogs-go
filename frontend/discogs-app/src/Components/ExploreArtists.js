@@ -1,12 +1,13 @@
 import React from "react";
-import { Divider, Grid, Icon, Menu } from "semantic-ui-react";
+import { Divider, Grid, Icon } from "semantic-ui-react";
 import ExploreTab from "./ExploreTab";
 import PaginationTop from "./PaginationTop";
 import ExploreItem from "./ExploreItem";
 import { Link } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import qs from "query-string";
+import PaginationMenu from "./PaginationMenu"
 const amountOptions = [
   { key: "25", text: "25", value: "25" },
   { key: "50", text: "50", value: "50" },
@@ -66,6 +67,7 @@ const SEARCH = gql`
 `;
 
 function ExploreArtists() {
+  const history = useHistory();
   const queryString = useParams();
   const queryParam = qs.parse(queryString.query);
   const variables = {
@@ -96,10 +98,31 @@ function ExploreArtists() {
               amountOptions={amountOptions}
               sortOptions={sortOptions}
               listingAmount={queryParam.show_count}
-              startIndex={variables.startIndex}
-              endIndex={variables.endIndex}
+              startIndex={
+                data.search.result.filter(
+                  (result) => result.__typename === "Artist"
+                ).length
+                  ? variables.startIndex + 1
+                  : 0
+              }
+              endIndex={
+                variables.startIndex +
+                data.search.result.filter(
+                  (result) => result.__typename === "Artist"
+                ).length
+              }
               total={data.search.totalResults}
               sortOrder={queryParam.sort}
+              onSortOrderChanged={(order) => {
+                history.push(
+                  qs.stringify({ ...queryParam, sort: order.value })
+                );
+              }}
+              onListingAmountChanged={(count) => {
+                history.push(
+                  qs.stringify({ ...queryParam, show_count: count.value })
+                );
+              }}
             />
             <Divider />
             <div className="ItemContainer">
@@ -117,18 +140,15 @@ function ExploreArtists() {
                 ))}
             </div>
             <Divider />
-            <Menu floated="right" pagination>
-              <Menu.Item as="a" icon>
-                <Icon name="chevron left" />
-              </Menu.Item>
-              <Menu.Item as="a">1</Menu.Item>
-              <Menu.Item as="a">2</Menu.Item>
-              <Menu.Item as="a">3</Menu.Item>
-              <Menu.Item as="a">4</Menu.Item>
-              <Menu.Item as="a" icon>
-                <Icon name="chevron right" />
-              </Menu.Item>
-            </Menu>
+            <PaginationMenu
+              onPageSelected={(page) =>
+                history.push(qs.stringify({ ...queryParam, page }))
+              }
+              page={queryParam.page}
+              itemLength={data.search.totalResults}
+              listingAmount={queryParam.show_count}
+              maxLength={6}
+            />
           </Grid.Column>
         </Grid>
       </div>

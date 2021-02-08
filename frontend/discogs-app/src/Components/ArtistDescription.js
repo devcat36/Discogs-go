@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useLazyQuery, gql } from "@apollo/client";
 import PaginationTop from "./PaginationTop";
-import MasterDescription from "./MasterDescription";
 import PaginationMenu from "./PaginationMenu";
 
 const amountOptions = [

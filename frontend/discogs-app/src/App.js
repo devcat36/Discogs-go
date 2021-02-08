@@ -99,7 +99,7 @@ function App() {
                 <Route path={"/explore/master/"}>
                   <MasterDescription />
                 </Route>
-                <Route path={"/explore/release/"}>
+                <Route path={"/explore/release/:id"}>
                   <ReleaseDescription />
                 </Route>
                 <Route path={"/explore/artist/:id"}>
