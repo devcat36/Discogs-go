@@ -96,7 +96,7 @@ function App() {
                 <Route path={"/explore/search/artist/:query"}>
                   <ExploreArtists />
                 </Route>
-                <Route path={"/explore/master/"}>
+                <Route path={"/explore/master/:id"}>
                   <MasterDescription />
                 </Route>
                 <Route path={"/explore/release/:id"}>

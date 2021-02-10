@@ -58,7 +58,6 @@ function ReleaseDescription() {
   const { id } = useParams();
   const { data } = useQuery(RELEASE_QUERY, { variables: { id } });
   if (!data) return null;
-  console.log(data);
   return (
     <div className={"ItemDescription contained"}>
       <Grid divided>
