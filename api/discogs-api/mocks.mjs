@@ -81,7 +81,7 @@ export const mocks = {
   },
   Item: () => ({
     notes: casual.sentences(5),
-    image: casual.random_element([['https://picsum.photos/300'],[]]),
+    image: ['https://picsum.photos/300'],
     comments: casual.sentence
   }),
   Release: () => ({

@@ -39,6 +39,8 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { Auth0Provider } from "@auth0/auth0-react";
+import Cookies from 'universal-cookie';
+import { v4 as uuidv4 } from 'uuid';
 
 export const LoginContext = createContext({
   loggedIn: false,
@@ -51,6 +53,8 @@ const client = new ApolloClient({
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const cookies = new Cookies();
+  if(!cookies.get('discogs_sid')) cookies.set('discogs_sid', uuidv4());
   return (
     <Auth0Provider
       domain="devcat.eu.auth0.com"
