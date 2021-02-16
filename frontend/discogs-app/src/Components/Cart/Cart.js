@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { Segment, Header, Button, Icon } from "semantic-ui-react";
-import { Link, useHistory } from "react-router-dom";
-import OrderContainer from "./OrderContainer";
-import MarketplaceTab from "./MarketplaceTab";
+import { Link } from "react-router-dom";
 import { useLazyQuery, gql } from "@apollo/client";
-import useToken from "../hooks/useToken";
-import Cookies from "universal-cookie";
+import useToken from "../../hooks/useToken";
+import OrderContainer from "./OrderContainer";
+import MarketplaceTab from "../MarketplaceTab";
 
 const CART_QUERY = gql`
   query cart($id: ID!) {
@@ -69,32 +68,39 @@ const CART_QUERY = gql`
 `;
 
 function Cart() {
-  const [getData, { data }] = useLazyQuery(CART_QUERY);
+  const [fetchCartData, { data: fetchedData }] = useLazyQuery(CART_QUERY);
   const token = useToken();
   useEffect(() => {
-    if (token) getData({ variables: { id: token[1] } });
-    else {
-      const cookies = new Cookies();
-      getData({ variables: { id: cookies.get("discogs_sid") } });
+    let id = getTokenOrSessionId();
+    fetchCartData({ variables: { id } });
+
+    function getTokenOrSessionId() {
+      if (token) return token[1];
+      else return localStorage.getItem("discogs_sid");
     }
-  }, [token, getData]);
-  if (!data) return null;
-  console.log(data);
+  }, [token, fetchCartData]);
+
+  if (!fetchedData) return null;
+  
+  const cartData = fetchedData.user.cart;
+  const totalItemCount = cartData.orders
+    .map((order) => order.items.length)
+    .reduce((a, b) => a + b, 0);
+  const totalSellerCount = cartData.orders.length;
+
+  const CartOrderContainers = cartData.orders.map((order) => (
+    <OrderContainer order={order} />
+  ));
+
   return (
     <div className={"contained"}>
       <MarketplaceTab activeItem={"Cart"} />
       <div className={"Cart"}>
         <div className={"Orders"}>
           <Header as={"h2"}>
-            You have{" "}
-            {data.user.cart.orders
-              .map((order) => order.items.length)
-              .reduce((a, b) => a + b, 0)}{" "}
-            items in your cart from {data.user.cart.orders.length} sellers.
+            {`You have ${totalItemCount} items in your cart from ${totalSellerCount} sellers.`}
           </Header>
-          {data.user.cart.orders.map((order) => (
-            <OrderContainer order={order} />
-          ))}
+          {CartOrderContainers}
         </div>
         <div className={"Aside"}>
           <Button compact>
@@ -124,5 +130,4 @@ function Cart() {
     </div>
   );
 }
-
 export default Cart;

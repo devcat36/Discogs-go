@@ -18,7 +18,7 @@ import Footer from "./Components/Footer";
 import ItemDescription from "./Components/ItemDescription";
 import Order from "./Components/Order";
 import MarketplaceAllItems from "./Components/MarketplaceAllItems";
-import Cart from "./Components/Cart";
+import Cart from "./Components/Cart/Cart";
 import Purchases from "./Components/Purchases";
 import ListForSale from "./Components/ListForSale";
 import SellerStore from "./Components/SellerStore";
@@ -39,7 +39,6 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { Auth0Provider } from "@auth0/auth0-react";
-import Cookies from 'universal-cookie';
 import { v4 as uuidv4 } from 'uuid';
 
 export const LoginContext = createContext({
@@ -53,8 +52,8 @@ const client = new ApolloClient({
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const cookies = new Cookies();
-  if(!cookies.get('discogs_sid')) cookies.set('discogs_sid', uuidv4());
+  if(!localStorage.getItem('discogs_sid')) 
+    localStorage.setItem('discogs_sid', uuidv4());
   return (
     <Auth0Provider
       domain="devcat.eu.auth0.com"

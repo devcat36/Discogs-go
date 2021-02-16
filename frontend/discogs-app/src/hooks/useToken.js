@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {useAuth0} from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function useToken(callback) {
   const [token, setToken] = useState(null);
-  const {getAccessTokenSilently} = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const getToken = async () => {
     const domain = "devcat.eu.auth0.com";
     try {
@@ -11,7 +11,7 @@ function useToken(callback) {
         audience: `https://${domain}/api/v2/`,
         scope: "read:current_user",
       });
-      setToken(['token', accessToken]);
+      setToken(["token", accessToken]);
       callback(accessToken);
       console.log(accessToken);
     } catch (e) {
@@ -20,7 +20,7 @@ function useToken(callback) {
   };
   useEffect(() => {
     getToken();
-  },[]);
+  }, []);
   return token;
 }
 
