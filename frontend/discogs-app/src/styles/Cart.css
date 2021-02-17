@@ -12,65 +12,88 @@
     padding-left: 1rem;
 }
 
-.Cart .OrderContainer{
+.Cart .Orders .OrderContainer{
     padding-top: 0.5rem;
 }
 
-.Cart .OrderLeft{
-    flex-grow: 1;
-}
-
-.Cart .OrderRight{
-    width: 310px;
-}
-
-.Cart .OrderContents{
-    display: flex;
-}
-
-.Cart .ContainerHeader{
+.Cart .Orders .OrderContainer .ContainerHeader{
     font-size: 1.4rem;
 }
 
-.Cart .ItemHeader{
+.Cart .Orders .OrderContainer .DeleteOrderIcon{
+    float: right;
+}
+
+.Cart .Orders .OrderContainer .OrderContents{
+    display: flex;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderLeft{
+    flex-grow: 1;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderLeft .ShippingAddressHeader{
+    margin-top: 0;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderLeft .ItemHeader{
     font-size: 1.1rem !important;
 }
 
-.Cart .ChangeAddress{
+.Cart .OrderContents .OrderLeft .ChangeAddress{
     font-weight: normal;
     font-size: small;
 }
 
-.Cart .OrderRight{
+.Cart .Orders .OrderContainer .OrderContents .OrderRight{
+    width: 310px;
     padding: 6px 0 0 10px;
 }
 
-.Cart .ShippingHeader{
-}
-
-.Cart .PaymentMenu{
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .PaymentMenu{
     margin-bottom: 0.8rem !important;
 }
 
-.Cart .CostTable{
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .PaymentMenu .CreditCardMenu img{
+    margin-top: 0.3rem;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .PaymentMenu .PaypalMenu .radio{
     width: 100%;
 }
 
-.Cart .Cost{
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .PaymentMenu .PaypalMenu img{
+    display: inline;
+    margin-left: 0.5rem;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .Cost{
     text-align: right;
 }
 
-.Cart .CostTable th{
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .CostTable{
+    width: 100%;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .CostTable th{
     padding-top: 6px;
 }
 
-.Cart .CostTable td{
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .CostTable td{
     padding-top: 6px;
 }
 
-.Cart .TotalCostTable{
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .CostDivider{
+    margin: 0.5rem 0 0 0;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .TotalCostTable{
     width: 100%;
     font-weight: bold;
     font-size: large;
     margin-bottom: 1.5rem;
+}
+
+.Cart .Orders .OrderContainer .OrderContents .OrderRight .OrderButton{
+    margin-top: 1rem;
 }
