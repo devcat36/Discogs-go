@@ -21,7 +21,7 @@ export default function CartItemTable({ items }) {
   ));
 
   return (
-    <Table basic="very'" unstackable>
+    <Table basic="very" compact="very">
       <Table.Body>{CartItems}</Table.Body>
     </Table>
   );

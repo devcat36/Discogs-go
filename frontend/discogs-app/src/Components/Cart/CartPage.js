@@ -3,6 +3,8 @@ import { Segment, Header, Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import OrderContainer from './OrderContainer';
 import MarketplaceTab from '../MarketplaceTab';
+import { Grid } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 export default function CartPage({ cart }) {
   const totalItemCount = cart.orders.map((order) => order.items.length).reduce((a, b) => a + b, 0);
@@ -11,16 +13,16 @@ export default function CartPage({ cart }) {
   const CartOrders = cart.orders.map((order) => <OrderContainer order={order} />);
 
   return (
-    <div className={'contained'}>
-      <MarketplaceTab activeItem={'Cart'} />
-      <main className={'Cart'}>
-        <section className={'Orders'}>
+    <Container className="contained">
+      {/* <MarketplaceTab activeItem={'Cart'} /> */}
+      <Grid stackable>
+        <Grid.Column as="section" computer="13" mobile="16">
           <Header as={'h2'}>
             {`You have ${totalItemCount} items in your cart from ${totalSellerCount} sellers.`}
           </Header>
           {CartOrders}
-        </section>
-        <aside className={'Aside'}>
+        </Grid.Column>
+        <Grid.Column as="aside" computer="3" mobile="16">
           <Button compact>
             <Icon name={'trash alternate outline'} />
             Empty Cart
@@ -42,8 +44,8 @@ export default function CartPage({ cart }) {
               Check out our <Link>Safe Buying Tips</Link> for for more.
             </p>
           </Segment>
-        </aside>
-      </main>
-    </div>
+        </Grid.Column>
+      </Grid>
+    </Container>
   );
 }

@@ -6,7 +6,7 @@ export default function CartItem({ imgsrc, title, price, mediaCondition, sleeveC
   return (
     <Table.Row>
       <Table.Cell>
-        <Item.Group unstackable>
+        <Item.Group>
           <Item>
             <Item.Image size="tiny" src={imgsrc} />
             <Item.Content>
