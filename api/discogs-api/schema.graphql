@@ -457,8 +457,6 @@ type BuyerInfo {
 }
 
 type Cart {
-  #    itemCount: Int!
-  #    sellerCount: Int!
   orders: [Order!]!
 }
 

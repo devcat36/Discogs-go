@@ -69,7 +69,7 @@ const CART_QUERY = gql`
   }
 `;
 
-function Cart() {
+export default function Cart() {
   const [fetchCartData, { data, error }] = useLazyQuery(CART_QUERY);
   const token = useToken();
   useEffect(() => {
@@ -86,4 +86,3 @@ function Cart() {
   else if (data) return <CartPage cart={data.user.cart} />;
   else return null;
 }
-export default Cart;
