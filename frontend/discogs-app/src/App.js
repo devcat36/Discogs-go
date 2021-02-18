@@ -5,7 +5,6 @@ import React, {
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "./styles/common.css";
-import "./styles/Cart.css";
 import "./styles/ItemDescription.css";
 import "./styles/ItemListElement.css";
 import "./styles/ItemSidebar.css";

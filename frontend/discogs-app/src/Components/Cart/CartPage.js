@@ -4,6 +4,20 @@ import { Link } from 'react-router-dom';
 import OrderContainer from './OrderContainer';
 import MarketplaceTab from '../MarketplaceTab';
 
+const styles = {
+  mainContainer: {
+    display: 'flex',
+    paddingTop: '1rem',
+  },
+  ordersSection: {
+    width: '75%',
+  },
+  asideSection: {
+    width: '25%',
+    paddingLeft: '1rem',
+  },
+};
+
 export default function CartPage({ cart }) {
   const totalItemCount = cart.orders.map((order) => order.items.length).reduce((a, b) => a + b, 0);
   const totalSellerCount = cart.orders.length;
@@ -11,22 +25,22 @@ export default function CartPage({ cart }) {
   const CartOrders = cart.orders.map((order) => <OrderContainer order={order} />);
 
   return (
-    <div className={'contained'}>
-      <MarketplaceTab activeItem={'Cart'} />
-      <main className={'Cart'}>
-        <section className={'Orders'}>
-          <Header as={'h2'}>
+    <div className="contained">
+      <MarketplaceTab activeItem="Cart" />
+      <main style={styles.mainContainer}>
+        <section style={styles.ordersSection}>
+          <Header as="h2">
             {`You have ${totalItemCount} items in your cart from ${totalSellerCount} sellers.`}
           </Header>
           {CartOrders}
         </section>
-        <aside className={'Aside'}>
+        <aside style={styles.asideSection}>
           <Button compact>
             <Icon name={'trash alternate outline'} />
             Empty Cart
           </Button>
           <Segment>
-            <Header as={'h3'}>Buying Items on Discogs</Header>
+            <Header as="h3">Buying Items on Discogs</Header>
             <p>
               Your cart can hold items from many different sellers. When you're ready to check out,
               you'll place one order with each seller.

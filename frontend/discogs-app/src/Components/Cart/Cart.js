@@ -45,6 +45,10 @@ const CART_QUERY = gql`
           items {
             id
             image
+            price{
+              currency
+              value
+            }
             release {
               title
               artist {

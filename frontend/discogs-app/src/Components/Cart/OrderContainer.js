@@ -11,18 +11,41 @@ import CostTables from './CostTables';
 import TermsAgreementCheckbox from './TermsAgreementCheckbox';
 import OrderButton from './OrderButton';
 
+const styles = {
+  orderContainer: {
+    paddingTop: '0.5rem',
+  },
+  orderSegment: {
+    display: 'flex',
+  },
+  orderSection: {
+    width: '70%',
+  },
+  orderAside: {
+    width: '30%',
+    padding: '6px 0 0 10px',
+  },
+  shippingAddressHeader: {
+    marginTop: '0',
+  },
+  changeAdressLink: {
+    fontWeight: 'normal',
+    fontSize: 'small',
+  },
+};
+
 export default function OrderContainer({ order }) {
   const shippingAddress = order.buyer.buyerSettings.address;
   return (
-    <article className="OrderContainer">
+    <article style={styles.orderContainer}>
       <OrderContainerHeader seller={order.seller} />
-      <Segment attached className="OrderContents">
-        <section className="OrderLeft">
+      <Segment attached style={styles.orderSegment}>
+        <section style={styles.orderSection}>
           <CartItemTable items={order.items} />
 
-          <Header as="h3" className="ShippingAddressHeader">
+          <Header as="h3" style={styles.shippingAddressHeader}>
             Your Shipping Address&nbsp;&nbsp;
-            <Link className="ChangeAddress"> Change your address</Link>
+            <Link style={styles.changeAdressLink}> Change your address</Link>
           </Header>
 
           <Divider />
@@ -30,10 +53,8 @@ export default function OrderContainer({ order }) {
           <CustomRequestForm sellerName={order.seller.userName} />
         </section>
 
-        <aside className="OrderRight">
-          <Header as="h4" className="ShippingOptionsHeader">
-            Shipping
-          </Header>
+        <aside style={styles.orderAside}>
+          <Header as="h4">Shipping</Header>
           <Dropdown options={SHIPPING_OPTIONS} value={SHIPPING_OPTIONS[0].value} selection fluid />
 
           <Header as="h4">Payment</Header>
