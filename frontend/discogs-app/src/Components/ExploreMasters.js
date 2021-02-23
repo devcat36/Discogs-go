@@ -96,6 +96,7 @@ function ExploreMasters() {
     sort: queryParam.sort,
   };
   const { data } = useQuery(SEARCH, { variables: variables });
+  console.log(data);
   if (!data) return null;
 
   let selectedFilters = [

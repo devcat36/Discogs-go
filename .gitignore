@@ -5,6 +5,10 @@
 
 /frontend/discogs-app/node_modules
 /frontend/discogs-app/.idea
-/frontend/discogs-app/.eslintcache
+/frontend/discogas-app/.eslintcache
 /frontend/discogs-app/yarn.lock
 /frontend/discogs-app/package-lock.json
+
+/discogs_db
+
+*.Identifier

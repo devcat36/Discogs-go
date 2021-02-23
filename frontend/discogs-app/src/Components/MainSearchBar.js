@@ -1,67 +1,69 @@
-import React, { useState } from "react";
-import { Search } from "semantic-ui-react";
-import { gql, useLazyQuery } from "@apollo/client";
-import "../styles/MainSearchBar.css";
-import { CURRENCY_SYMBOL } from "../constants";
+import React, { useState } from 'react';
+import { Search } from 'semantic-ui-react';
+import { gql, useLazyQuery } from '@apollo/client';
+import '../styles/MainSearchBar.css';
+import { CURRENCY_SYMBOL } from '../constants';
 
 const SEARCH_QUERY = gql`
   query MainSearch($term: String!) {
-    search(term: $term, startIndex: 0, endIndex: 6) {
-      result {
-        __typename
-        ... on Item {
-          image
-          release {
-            title
-            artist {
-              name
-            }
-          }
-          price {
-            currency
-            value
-          }
-        }
-        __typename
-        ... on Master {
+    previewSearch(term: $term, length: 5) {
+      __typename
+      ... on Item {
+        image
+        release {
           title
-          image
           artist {
             name
           }
         }
-        __typename
-        ... on Artist {
-          name
-          image
+        price {
+          currency
+          value
         }
+      }
+      __typename
+      ... on Master {
+        title
+        image
+        artist {
+          name
+        }
+      }
+      __typename
+      ... on Artist {
+        name
+        image
       }
     }
   }
 `;
 
+const ARTIST_PLACEHOLDER = '/artist.png';
+const ALBUM_PLACEHOLDER = '/album.png';
+
 const resultFromResponse = (response) =>
-  response.search.result.map((result) => {
-    if (result.__typename === "Master") {
+  response.previewSearch.map((result) => {
+    if (result.__typename === 'Master') {
       return {
         title: result.title,
-        description: "Master",
-        image: result.image.length > 0 ? result.image[0] : null,
+        description: 'Master',
+        image: typeof result.image === 'string' ? result.image : ALBUM_PLACEHOLDER,
+        key: result.id,
       };
-    } else if (result.__typename === "Item") {
+    } else if (result.__typename === 'Item') {
       return {
         title: result.release.title,
-        description: "Item",
+        description: 'Item',
         image: result.image.length > 0 ? result.image[0] : null,
-        price: `${
-          CURRENCY_SYMBOL[result.price.currency]
-        } ${result.price.value.toFixed(2)}`,
+        price: `${CURRENCY_SYMBOL[result.price.currency]} ${result.price.value.toFixed(2)}`,
+        key: result.id,
       };
-    } else if (result.__typename === "Artist") {
+    } else if (result.__typename === 'Artist') {
       return {
         title: result.name,
-        description: "Artist",
-        image: result.image.length > 0 ? result.image[0] : null,
+        description: 'Artist',
+        image: typeof result.image === 'string' ? result.image : ARTIST_PLACEHOLDER,
+        key: result.id,
       };
     } else return null;
   });
@@ -74,7 +76,7 @@ function MainSearchBar() {
   return (
     <Search
       className="MainSearchBar"
-      style={{ width: "100%" }}
+      style={{ width: '100%' }}
       placeholder="Search artists, albums and more..."
       onSearchChange={(e, data) => {
         getResult({ variables: { term: data.value } });

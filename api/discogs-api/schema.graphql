@@ -386,6 +386,10 @@ type Query {
     startIndex: Int
     endIndex: Int
   ): SearchResult!
+  previewSearch(
+    term: String!
+    length: Int!
+  ): [SearchObject!]!
   advancedSearch(term: AdvancedSearchInput, amount: Int): SearchResult!
   item(id: ID!): Item!
   order(id: ID!, token: ID!): Order!
