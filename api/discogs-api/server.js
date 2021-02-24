@@ -4,22 +4,21 @@ const fs = require("fs");
 const resolvers = require("./resolvers.js");
 const { mocks } = require("./mocks.js");
 const bodyParser = require("body-parser");
-const { initDB } = require("./business_logic.js");
+const { initDB } = require("./database.js");
 
 const typeDefs = fs.readFileSync("./schema.graphql", "utf8").toString();
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  mocks,
   mockEntireSchema: false,
 });
 
 const app = express();
 app.use(bodyParser.json());
 app.use("/graphql", (req, res, next) => {
-  console.log(req.body.query);
-  console.log(req.body.variables);
+  // console.log(req.body.query);
+  // console.log(req.body.variables);
   return next();
 });
 server.applyMiddleware({ app });

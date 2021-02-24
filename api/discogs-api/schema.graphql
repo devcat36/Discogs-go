@@ -380,7 +380,7 @@ type Query {
   user(id: ID!, isToken: Boolean): User!
   search(
     term: String!
-    searchType: [String!]
+    searchType: String!
     filter: FilterInput
     sort: String
     startIndex: Int
